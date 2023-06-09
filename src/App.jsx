@@ -1,23 +1,27 @@
 import "./App.css";
-import { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { Foo } from "./components/Foo";
+import Earth from "./components/Earth1";
+import { Locations } from "./components/Locations";
 
 const Scene = () => {
   return (
     <>
-      <Foo />
+      <Earth />
       <ambientLight />
-      <OrbitControls makeDefault />
     </>
   );
 };
 
 export default function App() {
   return (
-    <Canvas camera={{ position: [0, 0, 2] }}>
-      <Scene />
-    </Canvas>
+    <>
+      <Locations />
+      <div className="fixed m-0 h-full w-full overflow-hidden p-0">
+        <Canvas camera={{ position: [0, 0, 0.01] }}>
+          <Scene />
+        </Canvas>
+      </div>
+    </>
   );
 }
