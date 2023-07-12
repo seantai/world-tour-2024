@@ -2,26 +2,61 @@ export const locationData = [
   {
     title: "Venezuela",
     id: "venezuela",
-    coords: [0.41, 0.1, -0.89],
-  },
-  {
-    title: "Kenya",
-    id: "kenya",
-    coords: [0.8, -0.07, 0.59],
+    coords: [0.42, 0.12, 0.95],
   },
   {
     title: "Morocco",
     id: "morocco",
-    coords: [0.85, 0.48, -0.05],
+    coords: [0.85, 0.49, 0.15],
   },
   {
-    title: "India",
-    id: "india",
-    coords: [0.21, 0.33, 0.89],
+    title: "Nova Scotia",
+    id: "nova_scotia",
+    coords: [0.34, 0.68, 0.61],
   },
   {
-    title: "Vietnam",
-    id: "vietnam",
-    coords: [-0.3, 0.17, 0.91],
+    title: "Kenya",
+    id: "kenya",
+    coords: [0.81, -0.04, -0.62],
+  },
+  {
+    title: "Venezuela",
+    id: "venezuela1",
+    coords: [0.42, 0.12, 0.95],
+  },
+  {
+    title: "Morocco",
+    id: "morocco1",
+    coords: [0.85, 0.49, 0.15],
+  },
+  {
+    title: "Nova Scotia",
+    id: "nova_scotia1",
+    coords: [0.34, 0.68, 0.61],
+  },
+  {
+    title: "Kenya",
+    id: "kenya1",
+    coords: [0.81, -0.04, -0.62],
+  },
+  {
+    title: "Venezuela",
+    id: "venezuela2",
+    coords: [0.42, 0.12, 0.95],
+  },
+  {
+    title: "Morocco",
+    id: "morocco2",
+    coords: [0.85, 0.49, 0.15],
+  },
+  {
+    title: "Nova Scotia",
+    id: "nova_scotia2",
+    coords: [0.34, 0.68, 0.61],
+  },
+  {
+    title: "Kenya",
+    id: "kenya2",
+    coords: [0.81, -0.04, -0.62],
   },
 ];

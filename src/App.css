@@ -1,3 +1,4 @@
+@import url(https://fonts.bunny.net/css?family=amarante:400);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +10,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #2b2b33;
-  /* overflow: hidden; */
+  background: #072848;
+  overflow: hidden;
+  /* overflow-x: hidden; */
 }

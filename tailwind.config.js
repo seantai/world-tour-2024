@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["amarante", "sans-serif"],
+      },
+    },
   },
-  plugins: [require("prettier-plugin-tailwindcss")],
+  plugins: [
+    require("prettier-plugin-tailwindcss"),
+    require("tailwind-scrollbar"),
+  ],
 };

@@ -1,67 +1,116 @@
 import classNames from "classnames";
-import { useInView } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import { useInView, motion as m } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import { locationData } from "../data/locations";
 import { state } from "../data/state";
-import { useSnapshot } from "valtio";
-import { motion } from "framer-motion";
-
-const Location = ({ children, id, coords }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {
-    margin: "-50% 0px -50% 0px",
-  });
-
-  const snap = useSnapshot(state);
-
-  useEffect(() => {
-    if (!isInView) return;
-    state.view = coords;
-  }, [isInView]);
-
-  return (
-    <motion.p
-      // layoutId="alksdffsad"
-      ref={ref}
-      // initial={{ opacity: 1 }}
-      // animate={{ opacity: 1 }}
-      // exit={{ opacity: 0 }}
-      className={classNames(
-        "cursor-pointer border-2 bg-slate-700 bg-opacity-50 py-4 text-3xl",
-        isInView
-          ? "border-2 border-gray-200 text-gray-100"
-          : "border-transparent text-gray-400"
-        // snap.clickedLocation == id ? "border-red-400" : "border-transparent"
-      )}
-      onClick={() => {
-        state.view = coords;
-        state.clickedLocation = id;
-        ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }}
-    >
-      {children}
-    </motion.p>
-  );
-};
 
 export const Locations = () => {
   return (
     <>
-      <div className="absolute z-20 m-0 w-full bg-transparent p-0">
-        <div className="flex w-1/3">
-          <div className="w-full py-[50vh]">
+      <div className="absolute bottom-0 right-0 top-0 z-40 mt-[0vh] flex h-full w-1/3 justify-end">
+        {/* <img src="./img/misfits11.png" width={200} height={"auto"} /> */}
+        {/************************************/}
+        <div className="flex w-full snap-y scroll-mr-6 flex-col items-center overflow-y-auto overflow-x-hidden scroll-smooth py-[50vh] backdrop-blur-md scrollbar scrollbar-track-slate-300/60 scrollbar-thumb-slate-800">
+          {locationData.map((location) => (
+            <Location
+              id={location.id}
+              coords={location.coords}
+              className="font-sans"
+              key={location.id}
+            >
+              {location.title}
+            </Location>
+          ))}
+        </div>
+        {/************************************/}
+      </div>
+      {/* <div className="absolute bottom-0 right-0 top-0 flex items-start justify-end">
+        <h1>hiiiiiiii</h1>
+        /~ <div className="absolute flex h-full w-[30%] flex-col items-center overflow-hidden shadow-xl backdrop-blur-xl">
+          /~ ************************************ ~/
+          <img src="./img/misfits.png" width={200} height={"auto"} />
+          /~ ************************************ ~/
+          <div className="/~pb-[50vh]~/ flex w-3/4 flex-col items-center overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-slate-300/60 scrollbar-thumb-slate-800">
+            /~ ************************************ ~/
             <ul>
               {locationData.map((location) => (
-                <li key={location.id}>
+                <Location
+                  id={location.id}
+                  coords={location.coords}
+                  className="font-sans"
+                  key={location.id}
+                >
+                  {location.title}
+                </Location>
+              ))}
+              /~ {locationData.map((location) => (
+                <li key={location.id} className="font-sans">
                   <Location id={location.id} coords={location.coords}>
                     {location.title}
                   </Location>
                 </li>
-              ))}
+              ))} ~/
             </ul>
+            /~ ************************************ ~/
           </div>
-        </div>
-      </div>
+        </div>~/
+      </div>*/}
     </>
+  );
+};
+
+const Location = ({ children, id, coords, ...props }) => {
+  const [hover, setHover] = useState(false);
+  const [pointerDown, setPointerDown] = useState(false);
+
+  const locationRef = useRef();
+  const isInView = useInView(locationRef, {
+    margin: "-55% 0px -45% 0px",
+    // amount: "all",
+  });
+
+  useEffect(() => {
+    if (!isInView) return;
+    state.currentView = coords;
+  }, [isInView]);
+
+  return (
+    <p
+      {...props}
+      ref={locationRef}
+      // layoutId="alksdffsad"
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ duration: 1.6 }}
+      className={classNames(
+        "w-full cursor-pointer border-2 border-transparent p-2 py-4 text-5xl text-gray-50/80",
+        hover && "text-slate-50",
+        pointerDown && "text-slate-400",
+        isInView &&
+          "border-auto border-dashed border-slate-50 border-opacity-100 bg-[#2c5f77] text-slate-50"
+      )}
+      onClick={() => {
+        state.currentView = coords;
+        locationRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+        // state.clickedLocation = id;
+      }}
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
+      onPointerDown={() => {
+        setPointerDown(true);
+      }}
+      onPointerUp={() => {
+        setPointerDown(false);
+      }}
+    >
+      {children}
+    </p>
   );
 };
