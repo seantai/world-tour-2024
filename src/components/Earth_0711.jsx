@@ -52,7 +52,6 @@ export default function Earth(props) {
 
   useEffect(() => {
     if (snap.currentView == null) return;
-    console.log("clicked");
     const timeout = setTimeout(() => {
       const direction = new Vector3();
       direction
@@ -87,11 +86,7 @@ export default function Earth(props) {
         floatingRange={[-0.05, 0.05]}
       >
         <group {...props} dispose={null} scale={1}>
-          <mesh
-            ref={earthRef}
-            geometry={nodes.Globe.geometry}
-            // rotation={[0, MathUtils.DEG2RAD(30), 0]}
-          >
+          <mesh ref={earthRef} geometry={nodes.Globe.geometry}>
             <shaderMaterial
               vertexShader={globeVert}
               fragmentShader={globeFrag}

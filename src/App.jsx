@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { Locations } from "./components/Locations";
-// import { Locations } from "./components/Locations copy";
+import { LocationsMobile } from "./components/LocationsMobile";
 import { Stars } from "@react-three/drei";
 import Earth from "./components/Earth_0711";
 import { Perf } from "r3f-perf";
@@ -36,6 +36,7 @@ export default function App() {
         </Canvas>
       </div>
       {/************************************/}
+      {/* <LocationsMobile /> */}
       <Locations />
       {/************************************/}
     </>

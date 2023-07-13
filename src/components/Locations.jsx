@@ -24,37 +24,6 @@ export const Locations = () => {
         </div>
         {/************************************/}
       </div>
-      {/* <div className="absolute bottom-0 right-0 top-0 flex items-start justify-end">
-        <h1>hiiiiiiii</h1>
-        /~ <div className="absolute flex h-full w-[30%] flex-col items-center overflow-hidden shadow-xl backdrop-blur-xl">
-          /~ ************************************ ~/
-          <img src="./img/misfits.png" width={200} height={"auto"} />
-          /~ ************************************ ~/
-          <div className="/~pb-[50vh]~/ flex w-3/4 flex-col items-center overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-slate-300/60 scrollbar-thumb-slate-800">
-            /~ ************************************ ~/
-            <ul>
-              {locationData.map((location) => (
-                <Location
-                  id={location.id}
-                  coords={location.coords}
-                  className="font-sans"
-                  key={location.id}
-                >
-                  {location.title}
-                </Location>
-              ))}
-              /~ {locationData.map((location) => (
-                <li key={location.id} className="font-sans">
-                  <Location id={location.id} coords={location.coords}>
-                    {location.title}
-                  </Location>
-                </li>
-              ))} ~/
-            </ul>
-            /~ ************************************ ~/
-          </div>
-        </div>~/
-      </div>*/}
     </>
   );
 };
@@ -65,12 +34,13 @@ const Location = ({ children, id, coords, ...props }) => {
 
   const locationRef = useRef();
   const isInView = useInView(locationRef, {
-    margin: "-55% 0px -45% 0px",
+    margin: "-50% 0px -50% 0px",
     // amount: "all",
   });
 
   useEffect(() => {
     if (!isInView) return;
+    console.log("hi");
     state.currentView = coords;
   }, [isInView]);
 
@@ -83,11 +53,10 @@ const Location = ({ children, id, coords, ...props }) => {
       // animate={{ opacity: 1 }}
       // transition={{ duration: 1.6 }}
       className={classNames(
-        "w-full cursor-pointer border-2 border-transparent p-2 py-4 text-5xl text-gray-50/80",
+        "w-full cursor-pointer border-2 border-slate-50 border-opacity-0 p-2 py-4 text-5xl text-gray-50/80",
         hover && "text-slate-50",
-        pointerDown && "text-slate-400",
-        isInView &&
-          "border-auto border-dashed border-slate-50 border-opacity-100 bg-[#2c5f77] text-slate-50"
+        pointerDown && "border-dashed border-opacity-100 text-slate-400",
+        isInView && "border-opacity-100  bg-[#2c5f77] text-slate-50"
       )}
       onClick={() => {
         state.currentView = coords;
@@ -95,7 +64,6 @@ const Location = ({ children, id, coords, ...props }) => {
           behavior: "smooth",
           block: "center",
         });
-        // state.clickedLocation = id;
       }}
       onPointerEnter={() => {
         setHover(true);
