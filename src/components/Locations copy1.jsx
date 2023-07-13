@@ -54,7 +54,7 @@ export const Locations = () => {
               {locationData.map((location) => (
                 <li key={location.id}>
                   <Location id={location.id} coords={location.coords}>
-                    {location.title}
+                    {location.name}
                   </Location>
                 </li>
               ))}

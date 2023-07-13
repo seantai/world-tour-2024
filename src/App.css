@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=amarante:400);
+@import url(https://fonts.bunny.net/css?family=amarante:400|angkor:400);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,13 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #072848;
+  background: #1d2a32;
+  /* background: #072848; */
   overflow: hidden;
   /* overflow-x: hidden; */
+}
+
+div {
+  /* color: dodgerblue; */
+  color: #020617;
 }

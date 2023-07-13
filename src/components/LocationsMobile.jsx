@@ -18,7 +18,7 @@ export const LocationsMobile = () => {
               className="font-sans"
               key={location.id}
             >
-              {location.title}
+              {location.name}
             </Location>
           ))}
         </div>
