@@ -54,13 +54,13 @@ export default function App() {
     <>
       {/************************************/}
       {/* <div className="pointer-events-none fixed inset-0 z-50 h-full w-full border-y-4" /> */}
-      <m.div
-        initial={{ blur: "12px" }}
-        animate={{ blur: "0px" }}
-        // transition={{ duration: 3, type: "spring" }}
-        className="blur-[0px] filter"
-      />
-      <div className="inset-0 left-0 top-0 z-0 h-[75%]">
+      {/* <m.div
+        initial={{ filter: "blur(100px)" }}
+        animate={{ filter: "blur(0px)" }}
+        transition={{ duration: 3, type: "spring" }}
+        className="fixed inset-0 z-[70] h-full w-full"
+      /> */}
+      <m.div className="inset-0 left-0 top-0 z-0 h-[75%] ">
         <m.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -80,7 +80,7 @@ export default function App() {
         >
           Tour
         </m.div>
-      </div>
+      </m.div>
       {/************************************/}
       {/* <div className="absolute bottom-0 left-24 z-[60] w-full">
         <div className="grid grid-cols-6 grid-rows-6">
@@ -114,7 +114,12 @@ export default function App() {
       {/************************************/}
       {/************************************/}
 
-      <m.div className="absolute inset-0 h-[75%] w-full border-2">
+      <m.div
+        initial={{ filter: "blur(12px)" }}
+        animate={{ filter: "blur(0px)" }}
+        transition={{ duration: 4, type: "spring" }}
+        className="absolute inset-0 h-[75%] w-full border-2 "
+      >
         <Canvas
           // orthographic
           camera={{

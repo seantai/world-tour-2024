@@ -8,7 +8,7 @@ import { useSnapshot } from "valtio";
 export const Locations = () => {
   return (
     <>
-      <div className="absolute bottom-0 right-0 top-0 z-[70] mt-[0vh] flex h-full w-1/3 ">
+      <div className="absolute bottom-0 right-0 top-0 z-[70] mt-[0vh] flex h-full w-1/3">
         {/* <img src="./img/misfits11.png" width={200} height={"auto"} /> */}
         {/************************************/}
         <div className="flex w-full snap-y scroll-mr-6 flex-col items-center overflow-y-auto overflow-x-hidden scroll-smooth py-[50vh] scrollbar scrollbar-track-slate-500 scrollbar-thumb-slate-800">
