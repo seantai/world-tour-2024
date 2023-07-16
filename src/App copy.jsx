@@ -14,7 +14,7 @@ const Scene = () => {
       <ambientLight />
       <Stars depth={14} radius={1} fade={true} />
       <OrbitControls />
-      {/* <Perf /> */}
+      <Perf />
     </>
   );
 };

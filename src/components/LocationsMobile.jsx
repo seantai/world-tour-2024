@@ -8,7 +8,6 @@ export const LocationsMobile = () => {
   return (
     <>
       <div className="absolute bottom-0 left-0 right-0 z-40 mt-[0vh] flex w-full justify-end">
-        {/* <img src="./img/misfits11.png" width={200} height={"auto"} /> */}
         {/************************************/}
         <div className="flex w-full snap-x items-center overflow-x-auto overflow-y-hidden scroll-smooth backdrop-blur-md scrollbar scrollbar-track-slate-300/60 scrollbar-thumb-slate-800">
           {locationData.map((location) => (
@@ -24,37 +23,6 @@ export const LocationsMobile = () => {
         </div>
         {/************************************/}
       </div>
-      {/* <div className="absolute bottom-0 right-0 top-0 flex items-start justify-end">
-        <h1>hiiiiiiii</h1>
-        /~ <div className="absolute flex h-full w-[30%] flex-col items-center overflow-hidden shadow-xl backdrop-blur-xl">
-          /~ ************************************ ~/
-          <img src="./img/misfits.png" width={200} height={"auto"} />
-          /~ ************************************ ~/
-          <div className="/~pb-[50vh]~/ flex w-3/4 flex-col items-center overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-slate-300/60 scrollbar-thumb-slate-800">
-            /~ ************************************ ~/
-            <ul>
-              {locationData.map((location) => (
-                <Location
-                  id={location.id}
-                  coords={location.coords}
-                  className="font-sans"
-                  key={location.id}
-                >
-                  {location.title}
-                </Location>
-              ))}
-              /~ {locationData.map((location) => (
-                <li key={location.id} className="font-sans">
-                  <Location id={location.id} coords={location.coords}>
-                    {location.title}
-                  </Location>
-                </li>
-              ))} ~/
-            </ul>
-            /~ ************************************ ~/
-          </div>
-        </div>~/
-      </div>*/}
     </>
   );
 };
@@ -78,7 +46,7 @@ const Location = ({ children, id, coords, ...props }) => {
     <p
       {...props}
       ref={locationRef}
-      // layoutId="alksdffsad"
+      layoutId="alksdffsad"
       // initial={{ opacity: 0 }}
       // animate={{ opacity: 1 }}
       // transition={{ duration: 1.6 }}
