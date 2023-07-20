@@ -21,3 +21,22 @@ div {
   /* color: dodgerblue; */
   color: #020617;
 }
+
+@layer components {
+  .neonText {
+    color: #fff;
+    text-shadow: 0 0 15px #2c83b3, 0 0 20px #2c83b3, 0 0 30px #10647e,
+      0 0 40px #000101;
+  }
+  .neonTextOnPointerDown {
+    color: #fff;
+    text-shadow: 0 0 15px #fff, 0 0 20px #accfd6, 0 0 30px #7fb8c9,
+      0 0 40px #2c83b3;
+  }
+
+  .neonTextWorldTour {
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 6px #accfd6, 0 0 12px #7fb8c9,
+      0 0 15px #96b8c9;
+  }
+}

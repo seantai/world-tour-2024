@@ -1,78 +1,70 @@
 import "./App.css";
-import React, { useState } from "react";
-import { Canvas, extend } from "@react-three/fiber";
-import { Stars, Effects } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Bvh, Environment, Stars } from "@react-three/drei";
 import { motion as m } from "framer-motion";
 import { Perf } from "r3f-perf";
 
-import Earth from "./components/canvas/Earth_0715";
-import { Locations } from "./components/dom/Locations";
-import Tickets from "./components/dom/Tickets";
-// import { LocationsMobile } from "./components/LocationsMobile";
+import Earth from "./components/canvas/Earth_0719";
+import { LocationsHorizontal } from "./components/dom/LocationsHorizontal";
 import Camera from "./components/canvas/Camera";
-import BackdropWords from "./components/dom/BackdropWords";
+import WorldTourWords from "./components/dom/WorldTourWords";
+// import BackdropWords from "./components/dom/BackdropWords";
+// import Tickets from "./components/dom/Tickets";
 
-import { UnrealBloomPass } from "three-stdlib";
-extend({ UnrealBloomPass });
+import { useMediaQuery } from "@chakra-ui/media-query";
 
 import {
   EffectComposer,
-  N8AO,
-  TiltShift2,
   Bloom,
-  // UnrealBloomPass,
+  Vignette,
+  TiltShift2,
 } from "@react-three/postprocessing";
-// import { UnrealBloomPass } from "three-stdlib";
-// extend({ UnrealBloomPass });
 
 const Scene = () => (
   <>
     <Earth />
-    <ambientLight />
-    <Stars count={2000} depth={5} radius={4} fade={true} />
+    <ambientLight intensity={0.2} />
+    <Stars count={2000} depth={10} radius={20} fade={true} />
     <Camera />
     {/* <Perf /> */}
+    <EffectComposer disableNormalPass>
+      <Bloom mipmapBlur intensity={1} luminanceThreshold={1} />
+      <Vignette offset={0.8} darkness={0.4} />
+    </EffectComposer>
   </>
 );
 
-// const
 export default function App() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05, // Stagger duration in seconds
-        duration: 2,
-      },
-    },
-  };
+  const [isLargerThan768] = useMediaQuery("(min-width:  768px)");
 
   return (
     <>
       {/************************************/}
-      {/* <Locations /> */}
+
+      {isLargerThan768 && <WorldTourWords />}
       {/************************************/}
       <m.div
-        // variants={container}
-        // initial="hidden"
-        // animate="show"
-        className="border-t-3 absolute left-0 top-0 h-[75%] w-full border-2 border-x-0 bg-gradient-to-b from-slate-900/80 via-30%"
-        // className="border-t-3 absolute left-0 top-0 h-[75%] w-full border-2 border-x-0 bg-gradient-to-b from-slate-900/80 via-30%"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute left-0 top-0 h-4/5 w-full border-2 sm:w-[75%] "
       >
-        {/* <BackdropWords /> */}
         <Canvas
           camera={{
-            position: [0, 1, 4],
+            position: [0, 1, 3],
             fov: 90,
             zoom: 4,
           }}
         >
-          <Scene />
+          <Bvh>
+            <Scene />
+          </Bvh>
         </Canvas>
       </m.div>
       {/************************************/}
-      <Tickets />
+      <LocationsHorizontal />
+      {/* {<Tickets />} */}
+      {/* {isLargerThan768 && <Tickets />} */}
       {/************************************/}
     </>
   );

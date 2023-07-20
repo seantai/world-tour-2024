@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 notes.txt
+src\components\canvas\not_sure
+src\components\dom\not_sure
+public\not_sure

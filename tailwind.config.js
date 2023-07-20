@@ -3,6 +3,7 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 const svgToDataUri = require("mini-svg-data-uri");
+const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -29,6 +30,12 @@ export default {
           "100%": { left: "125%" },
         },
       },
+      cursor: {
+        grab: "url(img/grab.png), auto",
+      },
+      boxShadow: {
+        neon: "0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00",
+      },
     },
   },
   plugins: [
@@ -46,5 +53,6 @@ export default {
         { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
       );
     },
+    iOSHeight,
   ],
 };

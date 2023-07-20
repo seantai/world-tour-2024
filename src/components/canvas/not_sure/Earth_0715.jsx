@@ -1,29 +1,30 @@
-import React, { useRef, useEffect, useMemo, useState } from "react";
+import React, { useRef, useEffect, useMemo, useState, createRef } from "react";
+import { Color } from "three";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, useTexture, Float } from "@react-three/drei";
+import {
+  useGLTF,
+  useTexture,
+  Float,
+  Html,
+  Instances,
+  Instance,
+} from "@react-three/drei";
 import { useCursor } from "@react-three/drei";
-import { Instances, Instance } from "@react-three/drei";
+import { useSnapshot, ref } from "valtio";
 
 import globeVert from "../../glsl/globe.vert";
 import globeFrag from "../../glsl/globe.frag";
 
-import { locationsArray } from "../../data/state";
-import { useSnapshot } from "valtio";
-
-import { ref } from "valtio";
-import { createRef } from "react";
-
-import { MarkerInstances, Marker } from "./EarthInstances";
-import { Color } from "three";
-
-import { markersArray } from "../../data/state";
-
-// import { useSnapshot } from "valtio";
-import { currentName } from "../../data/state";
+import {
+  locationsArray,
+  markersArray,
+  currentName,
+  currentMarkerHover,
+  currentPosition,
+} from "../../data/state";
 
 export default function Earth(props) {
   const { nodes } = useGLTF("/Earth_0715.glb");
-
   const earthRef = useRef();
 
   useEffect(() => {
@@ -46,16 +47,12 @@ export default function Earth(props) {
       });
       locationsArray.arr = dummyArray;
       markersArray.arr = dummyArray1;
-      // console.log(markersArray);
     }
   }, [nodes]);
 
   const night = useTexture("./img/earth_night.jpg", (t) => {
     t.flipY = false;
   });
-  // const day = useTexture("./img/earth_day.jpg", (t) => {
-  //   t.flipY = false;
-  // });
   const neon = useTexture("./img/earth_neon.jpg", (t) => {
     t.flipY = false;
   });
@@ -68,9 +65,7 @@ export default function Earth(props) {
       u_neon: {
         value: neon,
       },
-      // u_day: {
-      //   value: day,
-      // },
+
       u_night: {
         value: night,
       },
@@ -110,15 +105,16 @@ export default function Earth(props) {
 const Markers = ({ nodes }) => {
   const [hovered, set] = useState();
   useCursor(hovered);
+  // console.log(hovered);
 
   const readLocationsArray = useSnapshot(locationsArray);
   const readMarkersArray = useSnapshot(markersArray);
-
   const readCurrentName = useSnapshot(currentName);
+  const readCurrentMarkerHover = useSnapshot(currentMarkerHover);
 
   useEffect(() => {
     readMarkersArray.arr &&
-      readMarkersArray.arr.map((marker, i) => {
+      readMarkersArray.arr.forEach((marker, i) => {
         marker.ref.current.color.set("dodgerblue");
         if (readCurrentName.state == marker.name) {
           marker.ref.current.color.set("#2DE99C");
@@ -130,6 +126,9 @@ const Markers = ({ nodes }) => {
   //   t.flipY = false;
   // });
 
+  const [foo, setFoo] = useState();
+  console.log(readMarkersArray.arr);
+
   return (
     <>
       <Instances geometry={nodes.Venezuela.geometry}>
@@ -137,30 +136,98 @@ const Markers = ({ nodes }) => {
 
         {readMarkersArray.arr &&
           readMarkersArray.arr.map((marker, i) => {
+            // console.log(marker)
             return (
               <Instance
                 key={i}
                 // color={"dodgerblue"}
+                name={marker.name}
                 ref={marker.ref}
                 position={marker.position}
                 rotation={marker.rotation}
-                onPointerOver={() => set(true)}
+                onPointerOver={(e) => {
+                  set(true);
+                  // console.log(e.eventObject.name);
+                  // readMarkersArray.arr.forEach((marker) => {
+                  //   if (marker.name == e.eventObject.name) {
+                  //     setFoo(true);
+                  //     currentMarkerHover.state = marker.name;
+                  //   }
+                  // });
+                }}
                 onPointerOut={() => set(false)}
                 onClick={(e) => {
-                  readMarkersArray.arr.forEach((marker) => {
-                    marker.ref.current.color.set("dodgerblue");
-                  });
+                  // readMarkersArray.arr.forEach((marker) => {
+                  //   marker.ref.current.color.set("dodgerblue");
+                  //   // currentPosition.state = position;
+                  // });
+                  console.log(e.eventObject.name);
                   readLocationsArray.arr.forEach((location) => {
                     if (marker.name == location.name) {
                       e.eventObject.color = new Color("#2DE99C");
                       location.ref.current?.scrollIntoView({
                         behavior: "smooth",
-                        block: "center",
+                        inline: "center",
                       });
                     }
                   });
                 }}
-              />
+              >
+                {/* {foo && readCurrentMarkerHover.state && (
+                  <Html
+                    // key={i}
+                    // occlude="blending"
+                    occlude
+                    onOcclude={set}
+                    style={{
+                      transition: "all 0.2s",
+                      opacity: hovered ? 1 : 0,
+                      transform: `scale(${hovered ? 0.5 : 1})`,
+                    }}
+                  >
+                    <div className="font-angkor text-3xl text-slate-300">
+                      {marker.name}
+                    </div>
+                  </Html>
+                )} */}
+                {/* {hovered &&
+                  readLocationsArray.arr.map((location, i) => {
+                    if (marker.name == location.name) {
+                      console.log(marker.name);
+                      return (
+                        <Html
+                          key={i}
+                          occlude="blending"
+                          // occlude
+                          onOcclude={set}
+                          style={{
+                            transition: "all 0.2s",
+                            opacity: hovered ? 1 : 0,
+                            transform: `scale(${hovered ? 0.5 : 1})`,
+                          }}
+                        >
+                          <div className="font-angkor text-3xl text-slate-300">
+                            {marker.name}
+                          </div>
+                        </Html>
+                      );
+                    }
+                  })} */}
+                {/*   <Html
+                  // occlude="blending"
+                  onOcclude={set}
+                  style={{
+                    transition: "all 0.2s",
+                    opacity: hovered ? 1 : 0,
+                    transform: `scale(${hovered ? 0.5 : 1})`,
+                  }}
+                >
+                  /~ <div className="font-angkor text-3xl text-slate-300">
+                    {marker.name}
+                  </div> ~/
+                
+                </Html>*/}
+              </Instance>
             );
           })}
       </Instances>

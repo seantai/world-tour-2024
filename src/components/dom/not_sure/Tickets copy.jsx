@@ -9,8 +9,8 @@ export default function Tickets() {
     <>
       <div className="border-3 absolute bottom-0 left-0 z-10 h-[25%] w-full border-b-2 from-slate-500 bg-grid-slate-700">
         {/************************************/}
-        <div className="flex h-full w-full bg-gradient-to-t from-transparent to-[#1d2a32] p-10 text-2xl">
-          <div className="w-[24%] flex-col space-y-2">
+        <div className="flex h-full w-full bg-gradient-to-t from-transparent to-[#1d2a32] p-4 text-lg sm:p-10 sm:text-2xl">
+          <div className="w-[40%] flex-col space-y-2 sm:w-[24%]">
             <div className="text-slate-400">{"Get your"}</div>
             <div className="text-slate-100">
               {readCurrentName.state || "Kenya"}

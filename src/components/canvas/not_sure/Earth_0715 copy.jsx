@@ -120,7 +120,7 @@ const Markers = (props) => {
               // console.log(e.eventObject);
               locationData.forEach((location) => {
                 if (marker.name == location.name) {
-                  console.log(location.name, marker.name);
+                  // console.log(location.name, marker.name);
                 }
               });
             }}
