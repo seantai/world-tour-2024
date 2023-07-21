@@ -11,9 +11,9 @@ import { Markers } from "./Markers";
 import {
   locationsArray,
   markersArray,
-  currentName,
-  currentMarkerHover,
-  currentPosition,
+  // currentName,
+  // currentMarkerHover,
+  // currentPosition,
 } from "../../data/state";
 
 export default function Earth(props) {
@@ -45,7 +45,7 @@ export default function Earth(props) {
     }
   }, [nodes]);
 
-  const night = useTexture("./img/earth_night.jpg", (t) => {
+  const night = useTexture("./img/earth_night.webp", (t) => {
     t.flipY = false;
     t.colorSpace = SRGBColorSpace;
   });

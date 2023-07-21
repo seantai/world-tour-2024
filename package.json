@@ -11,9 +11,9 @@
   "dependencies": {
     "@chakra-ui/media-query": "^3.2.12",
     "@pmndrs/assets": "^1.6.0",
-    "@react-three/drei": "^9.71.0",
-    "@react-three/fiber": "^8.13.0",
-    "@react-three/postprocessing": "^2.14.13",
+    "@react-three/drei": "^9.79.3",
+    "@react-three/fiber": "^8.13.5",
+    "@react-three/postprocessing": "^2.15.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.12.16",
     "gsap": "^3.12.2",

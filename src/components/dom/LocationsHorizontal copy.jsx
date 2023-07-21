@@ -30,7 +30,7 @@ export const LocationsHorizontal = () => {
   return (
     <>
       <div
-        className="flex h-1/5 w-full snap-x items-center overflow-x-auto scroll-smooth whitespace-nowrap from-slate-500 px-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:h-1/5 sm:py-4 sm:scrollbar md:space-x-16"
+        className="fixed bottom-0 left-0 right-0 flex h-1/6 w-full snap-x items-center overflow-x-auto scroll-smooth whitespace-nowrap from-slate-500 px-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:h-1/5 sm:py-4 sm:scrollbar md:space-x-16"
         ref={containerRef}
       >
         <div className="h-full pl-[25vw]" />
@@ -71,24 +71,9 @@ const Location = ({
 
   useEffect(() => {
     if (!isInView) return;
-    // currentPosition.state = position;
-    // currentName.state = name;
-    // console.log(name);
-
-    const timeout = setTimeout(() => {
-      // if (marker.name == currentName.state) {
-      //   // alert(marker.name);
-      //   console.log(marker.name);
-      //   instanceRef.current.color = new Color(3, 3, 1);
-      // } else {
-      //   // console.log(marker.name);
-      //   instanceRef.current.color = new Color(0.2, 1.4, 1);
-      // }
-      currentPosition.state = position;
-      currentName.state = name;
-      console.log(name);
-    }, 400);
-    return () => clearTimeout(timeout);
+    currentPosition.state = position;
+    console.log(position);
+    currentName.state = name;
   }, [isInView]);
 
   const listItem = {
@@ -104,14 +89,13 @@ const Location = ({
       {...props}
       ref={reference}
       className={classNames(
-        "flex h-full grow-0 cursor-pointer snap-center items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
+        "flex h-full grow-0 cursor-pointer snap-center items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-3xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
         hover && "text-slate-50/90",
         pointerDown && "sm:neonText",
         isInView && "neonText text-slate-50/90 underline"
       )}
       onClick={() => {
         currentPosition.state = position;
-        currentName.state = name;
         reference.current?.scrollIntoView({
           behavior: "smooth",
           inline: "center",

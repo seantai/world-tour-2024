@@ -92,7 +92,7 @@ const Location = ({
         "w-full cursor-pointer border-y-2 border-slate-50 border-opacity-0 p-2 py-4 pr-16 text-right font-sans text-5xl font-light text-gray-50/80",
         hover && "text-slate-50",
         pointerDown && "border-dashed border-opacity-100 text-slate-400",
-        isInView && "border-opacity-100 bg-gradient-linear text-slate-50"
+        isInView && "bg-gradient-lisiar border-opacity-100 text-slate-50"
       )}
       onClick={() => {
         currentPosition.state = position;

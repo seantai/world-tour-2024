@@ -25,7 +25,7 @@ div {
 @layer components {
   .neonText {
     color: #fff;
-    text-shadow: 0 0 15px #2c83b3, 0 0 20px #2c83b3, 0 0 30px #10647e,
+    text-shadow: 0 0 15px #2cb39d, 0 0 20px #2ca6b3, 0 0 30px #10647e,
       0 0 40px #000101;
   }
   .neonTextOnPointerDown {
@@ -38,5 +38,10 @@ div {
     color: #fff;
     text-shadow: 0 0 2px #fff, 0 0 6px #accfd6, 0 0 12px #7fb8c9,
       0 0 15px #96b8c9;
+  }
+  .neonTicket {
+    color: #fff;
+    text-shadow: 0 0 15px #2cb360, 0 0 20px #2c83b3, 0 0 30px #10647e,
+      0 0 40px #000101;
   }
 }

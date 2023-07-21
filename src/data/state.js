@@ -2,7 +2,7 @@ import { Vector3 } from "three";
 import { proxy } from "valtio";
 
 export const currentName = proxy({
-  state: "",
+  state: "...",
 });
 
 export const currentPosition = proxy({
@@ -22,4 +22,11 @@ export const markersArray = proxy({
   arr: null,
 });
 
+export const markerHovered = proxy({
+  state: false,
+});
+
+export const launch = proxy({
+  state: "",
+});
 // {x: -0.3367542028427124, y: 0.7232969999313354, z: -0.6097537279129028}
