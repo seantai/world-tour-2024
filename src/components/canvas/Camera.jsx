@@ -1,26 +1,25 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { CameraControls } from "@react-three/drei";
 import { MathUtils, Vector3 } from "three";
 
-import { currentPosition, launch } from "../../data/state";
+import { currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
+
+import { locationsArray } from "../../data/state";
 
 export default function Camera() {
   const camRef = useRef();
   const readCurrentPosition = useSnapshot(currentPosition);
-  const readLaunch = useSnapshot(launch);
 
   useEffect(() => {
     if (camRef.current) {
-      camRef.current.mouseButtons.wheel = 0;
-      camRef.current.mouseButtons.middle = 0;
       camRef.current.mouseButtons.right = 0;
 
-      // camRef.current.touches.one = 0;
-      camRef.current.touches.two = 0;
       camRef.current.touches.three = 0;
-      camRef.current.minPolarAngle = MathUtils.degToRad(45);
-      camRef.current.maxPolarAngle = MathUtils.degToRad(100);
+      camRef.current.minPolarAngle = MathUtils.degToRad(40);
+      camRef.current.maxPolarAngle = MathUtils.degToRad(120);
+      camRef.current.smoothTime = 0.4;
+      camRef.current.restThreshold = 0.01;
     }
   }, []);
 
@@ -33,9 +32,9 @@ export default function Camera() {
         .normalize();
 
       const offset = new Vector3();
-      offset.copy(direction).multiplyScalar(4 + Math.random() * 1.3);
+      offset.copy(direction).multiplyScalar(4);
       camRef.current.setLookAt(
-        offset.x + Math.random() * 1.3,
+        offset.x + Math.random() * 1.1,
         offset.y,
         offset.z,
         0,
@@ -43,23 +42,51 @@ export default function Camera() {
         0,
         true
       );
-    }, 250);
+    }, 100);
     return () => clearTimeout(timeout);
   }, [readCurrentPosition.state]);
 
   useEffect(() => {
-    if (readLaunch.state !== null) {
-      camRef.current.setLookAt(
-        Math.random() * 120,
-        Math.random() * 80,
-        Math.random() * 100,
-        0,
-        0,
-        0,
-        true
-      );
-    }
-  }, [readLaunch.state]);
+    if (camRef.current) {
+      camRef.current.addEventListener("controlend", () => {
+        const timeout = setTimeout(() => {
+          let distances = locationsArray.arr.map((location, index) => {
+            let distance = location.position.distanceTo(
+              camRef.current.camera.position
+            );
+            return { distance, index };
+          });
 
-  return <CameraControls ref={camRef} makeDefault />;
+          distances.sort((a, b) => a.distance - b.distance);
+          let closestPosition = locationsArray.arr[distances[0].index];
+
+          const offset = new Vector3();
+          offset.copy(closestPosition.position).multiplyScalar(4);
+
+          locationsArray.arr.forEach((location) => {
+            if (location.name == closestPosition.name) {
+              location.ref.current?.scrollIntoView({
+                behavior: "smooth",
+                inline: "center",
+              });
+            }
+          });
+        }, 100);
+        return () => clearTimeout(timeout);
+      });
+
+      return () => camRef.current?.removeEventListener("controlend");
+    }
+  }, []);
+
+  return (
+    <CameraControls
+      ref={camRef}
+      makeDefault
+      maxDistance={5}
+      minDistance={3}
+      azimuthRotateSpeed={0.5}
+      polarRotateSpeed={0.5}
+    />
+  );
 }

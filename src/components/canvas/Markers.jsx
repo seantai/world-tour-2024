@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useMemo } from "react";
 import { Color } from "three";
 import { Instances, Instance } from "@react-three/drei";
-import { useSnapshot, ref } from "valtio";
+import { useSnapshot } from "valtio";
 
 import { locationsArray, currentName, markerHovered } from "../../data/state";
 
@@ -16,9 +16,6 @@ export const Markers = ({ nodes, nodeArray }) => {
   //
   const uniforms = useMemo(
     () => ({
-      u_time: {
-        value: 0,
-      },
       u_hoverIntensity: {
         value: 1,
       },
@@ -58,10 +55,10 @@ const Marker = ({ marker, readLocationsArray }) => {
 
   const readCurrentName = useSnapshot(currentName);
 
-  const green = new Color(0.2, 1.4, 1);
-  const yellow = new Color(3, 3, 1);
-
   useEffect(() => {
+    const green = new Color(0.2, 1.4, 1);
+    const yellow = new Color(3, 3, 1);
+
     if (readCurrentName.state == instanceRef.current.name) {
       instanceRef.current.color = yellow;
     } else {
@@ -76,24 +73,24 @@ const Marker = ({ marker, readLocationsArray }) => {
       name={marker[1].name}
       position={marker[1].position}
       rotation={marker[1].rotation}
-      onPointerEnter={(e) => {
-        markerHovered.state = true;
-      }}
-      onPointerLeave={(e) => {
-        markerHovered.state = false;
-      }}
-      onClick={(e) => {
-        currentName.state = instanceRef.current.name;
+      // onPointerEnter={(e) => {
+      //   markerHovered.state = true;
+      // }}
+      // onPointerLeave={(e) => {
+      //   markerHovered.state = false;
+      // }}
+      // onClick={(e) => {
+      //   currentName.state = instanceRef.current.name;
 
-        readLocationsArray.arr.forEach((location) => {
-          if (marker[1].name == location.name) {
-            location.ref.current?.scrollIntoView({
-              behavior: "smooth",
-              inline: "center",
-            });
-          }
-        });
-      }}
+      //   readLocationsArray.arr.forEach((location) => {
+      //     if (marker[1].name == location.name) {
+      //       location.ref.current?.scrollIntoView({
+      //         behavior: "smooth",
+      //         inline: "center",
+      //       });
+      //     }
+      //   });
+      // }}
     />
   );
 };

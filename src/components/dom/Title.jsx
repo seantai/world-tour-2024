@@ -1,51 +1,57 @@
 import { motion as m } from "framer-motion";
 import classNames from "classnames";
-import { currentName } from "../../data/state";
-import { useSnapshot } from "valtio";
-import { useState } from "react";
+import { useMediaQuery } from "@chakra-ui/media-query";
+import { launch } from "../../data/state";
 
 export default function Title() {
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   return (
     <>
       <div
-        className=" col-span-3
-       row-span-7 flex select-none flex-col items-center justify-center space-y-8 border-2 border-l-0  from-transparent to-[#454e67] bg-grid-slate-700"
+        className="col-start-1 col-end-13 row-start-1
+        row-end-3 flex select-none items-center
+       justify-center space-x-5 border-2 border-x-0 bg-grid-slate-700 sm:col-start-10 sm:col-end-13 sm:row-start-1 sm:row-end-8 sm:flex-col sm:space-x-0 sm:space-y-8 sm:border-r-2"
+        // onClick={() => {
+        //   launch.state = !launch.state;
+        // }}
       >
-        {/* <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className=""
-        > */}
         <m.div
-          initial={{ y: 100, opacity: 0 }}
+          initial={{
+            y: isLargerThan768 ? 100 : 0,
+            opacity: isLargerThan768 ? 0 : 1,
+          }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2, type: "spring" }}
           className={classNames(
-            "neonTextWorldTour font-angkor text-5xl text-[#12172c] sm:text-[60px]"
+            "neonTextWorldTour font-angkor text-3xl text-[#12172c] sm:text-5xl sm:text-[60px]"
           )}
         >
           World
         </m.div>
         <m.div
-          initial={{ y: 100, opacity: 0 }}
+          initial={{
+            y: isLargerThan768 ? 100 : 0,
+            opacity: isLargerThan768 ? 0 : 1,
+          }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2, type: "spring", delay: 0.5 }}
-          className="neonTextWorldTour text-6xl font-bold text-[#0f0a1c] "
+          className="neonTextWorldTour text-3xl text-[#0f0a1c] sm:font-sans sm:text-6xl sm:font-bold"
         >
           Tour
         </m.div>
         <m.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{
+            y: isLargerThan768 ? 100 : 0,
+            opacity: isLargerThan768 ? 0 : 1,
+          }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2, type: "spring", delay: 2.2 }}
           className={classNames(
-            "neonTextWorldTour font-angkor text-5xl text-[#12172c] sm:text-[60px]"
+            "neonTextWorldTour font-angkor text-3xl text-[#12172c] sm:text-5xl sm:text-[60px]"
           )}
         >
           2023
         </m.div>
-        {/* </m.div> */}
       </div>
     </>
   );

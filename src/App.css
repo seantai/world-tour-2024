@@ -38,4 +38,10 @@ body,
     text-shadow: 0 0 15px #2cb360, 0 0 20px #2c83b3, 0 0 30px #10647e,
       0 0 40px #000101;
   }
+  .neonTicketBorder {
+    /* border-radius: 45%; */
+    border-width: 2px;
+    border-color: 0 0 15px #2cb360, 0 0 20px #2c83b3, 0 0 30px #10647e,
+      0 0 40px #000101;
+  }
 }

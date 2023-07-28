@@ -6,50 +6,67 @@ const svgToDataUri = require("mini-svg-data-uri");
 const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,svg}"],
   theme: {
     extend: {
       fontFamily: {
         sans: ["amarante", "sans-serif"],
         angkor: ["angkor", "sans-serif"],
       },
-      backgroundImage: (theme) => ({
-        "gradient-radial":
-          // "radial-gradient(ellipse at center, #1abc9c 0%, #16a085 100%)",
-          "radial-gradient(circle,  rgba(42,88,114,1) 30%, rgba(29,42,50,1) 70%)",
-        "gradient-linear": (theme) => `linear-gradient(
-          90deg,
-          rgba(29,42,50,0) 0% ,
-          rgba(42,88,114,1) 100%)`,
-      }),
-      animation: {
-        shine: "shine .75s",
-      },
-      keyframes: {
-        shine: {
-          "100%": { left: "125%" },
-        },
-      },
-      // cursor: {
-      //   grab: "url(img/grab.png), auto",
-      // },
-      boxShadow: {
-        neon: "0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00",
-      },
+
       gridTemplateRows: {
         16: "repeat(16, minmax(0, 1fr))",
       },
-      gridRow: {
-        "span-7": "span 7 / span 7",
-        "span-8": "span 8 / span 8",
-        "span-9": "span 9 / span 9",
-        "span-10": "span 10 / span 10",
-        "span-11": "span 11 / span 11",
-        "span-12": "span 12 / span 12",
-        "span-13": "span 13 / span 13",
-        "span-14": "span 14 / span 14",
-        "span-15": "span 15 / span 15",
+
+      gridRowStart: {
+        8: "8",
+        9: "9",
+        10: "10",
+        11: "11",
+        12: "12",
+        13: "13",
+        14: "14",
+        15: "15",
+        16: "16",
       },
+      gridRowEnd: {
+        8: "8",
+        9: "9",
+        10: "10",
+        11: "11",
+        12: "12",
+        13: "13",
+        14: "14",
+        15: "15",
+        16: "16",
+      },
+      // gridRow: {
+      //   "span-7": "span 7 / span 7",
+      //   "span-8": "span 8 / span 8",
+      //   "span-9": "span 9 / span 9",
+      //   "span-10": "span 10 / span 10",
+      //   "span-11": "span 11 / span 11",
+      //   "span-12": "span 12 / span 12",
+      //   "span-13": "span 13 / span 13",
+      //   "span-14": "span 14 / span 14",
+      //   "span-15": "span 15 / span 15",
+      // },
+      // backgroundImage: (theme) => ({
+      //   "gradient-radial":
+      //     "radial-gradient(circle,  rgba(42,88,114,1) 30%, rgba(29,42,50,1) 70%)",
+      //   "gradient-linear": (theme) => `linear-gradient(
+      //     90deg,
+      //     rgba(29,42,50,0) 0% ,
+      //     rgba(42,88,114,1) 100%)`,
+      // }),
+      // animation: {
+      //   shine: "shine .75s",
+      // },
+      // keyframes: {
+      //   shine: {
+      //     "100%": { left: "125%" },
+      //   },
+      // },
     },
   },
   plugins: [

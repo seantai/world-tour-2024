@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useInView } from "framer-motion";
-import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { locationsArray, currentName, currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
 import { motion as m } from "framer-motion";
@@ -11,7 +11,8 @@ export const LocationsHorizontal = () => {
   const containerRef = useRef();
 
   useEffect(() => {
-    const middleLocation = "Jamaica";
+    const middleLocation = "Korea";
+
     if (containerRef.current) {
       {
         readLocationsArray.arr &&
@@ -29,12 +30,15 @@ export const LocationsHorizontal = () => {
 
   return (
     <>
-      <div className="col-span-full row-span-4 cursor-grab sm:row-span-4">
+      <div className="col-span-full row-span-4 sm:row-span-4">
         <div
-          className="flex h-full w-full snap-x items-center overflow-x-auto scroll-smooth whitespace-nowrap border-0  px-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
+          className="flex h-full w-full snap-x items-center overflow-x-scroll scroll-smooth whitespace-nowrap border-0 pr-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
           ref={containerRef}
         >
-          <div className="h-full pl-[25vw]" />
+          <div className="neonText text-5xl text-slate-50/90">
+            {"← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ←"}
+          </div>
+
           {readLocationsArray.arr &&
             readLocationsArray.arr.map((location, i) => {
               return (
@@ -75,9 +79,10 @@ const Location = ({
     if (!isInView) return;
 
     const timeout = setTimeout(() => {
-      currentPosition.state = position;
       currentName.state = name;
-    }, 250);
+      currentPosition.state = position;
+    }, 300);
+
     return () => clearTimeout(timeout);
   }, [isInView]);
 

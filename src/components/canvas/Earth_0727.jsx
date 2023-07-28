@@ -11,14 +11,15 @@ import { Markers } from "./Markers";
 import { locationsArray, markersArray } from "../../data/state";
 
 export default function Earth(props) {
-  const { nodes } = useGLTF("/Earth_0727.glb");
+  const { nodes } = useGLTF("/Earth_0727_2.glb");
   const earthRef = useRef();
   const nodeArray = useMemo(() => Object.entries(nodes), [nodes]);
 
   useEffect(() => {
     if (nodes) {
+      // console.log("nodes");
       const dummyArray = [];
-      const dummyArray1 = [];
+      // const dummyArray1 = [];
       const nodeArray = Object.entries(nodes);
       nodeArray.map((marker) => {
         if (["Earth", "Scene"].includes(marker[1].name)) return;
@@ -27,15 +28,15 @@ export default function Earth(props) {
           position: marker[1].position,
           ref: ref(createRef()),
         });
-        dummyArray1.push({
-          name: marker[1].name,
-          position: marker[1].position,
-          rotation: marker[1].rotation,
-          ref: ref(createRef()),
-        });
+        // dummyArray1.push({
+        //   name: marker[1].name,
+        //   position: marker[1].position,
+        //   rotation: marker[1].rotation,
+        //   ref: ref(createRef()),
+        // });
       });
       locationsArray.arr = dummyArray;
-      markersArray.arr = dummyArray1;
+      // markersArray.arr = dummyArray1;
     }
   }, [nodes]);
 
