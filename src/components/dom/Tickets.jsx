@@ -1,29 +1,38 @@
-import React from "react";
-import { motion as m } from "framer-motion";
-import { useSnapshot } from "valtio";
+import classNames from "classnames";
+import { useState } from "react";
 import { currentName } from "../../data/state";
+import { useSnapshot } from "valtio";
 
 export default function Tickets() {
+  const [pointerDown, setPointerDown] = useState();
   const readCurrentName = useSnapshot(currentName);
   return (
     <>
-      <div className="border-3 absolute bottom-0 left-0 z-10 h-[25%] w-full border-b-2 from-slate-500 bg-grid-slate-700">
-        {/************************************/}
-        <div className="flex h-full w-full bg-gradient-to-t from-transparent to-[#1d2a32] p-10 text-2xl">
-          <div className="w-[24%] flex-col space-y-2">
-            <div className="text-slate-400">{"Get your"}</div>
-            <div className="text-slate-100">
-              {readCurrentName.state || "Kenya"}
-            </div>
-            <div className="text-slate-400">concert tickets.</div>
-          </div>
-          <div className="">
-            <button className="rounded-full border bg-transparent px-4 py-2 text-slate-200">
-              Add to Cart ↪
-            </button>
-          </div>
+      <div className="col-span-full row-span-2 flex select-none items-center justify-center space-x-4 border-2 border-t-0 sm:col-span-3 sm:row-span-6 sm:flex-col sm:space-y-8 sm:border-l-0">
+        <div
+          className={classNames(
+            "neonText cursor-pointer rounded-lg border-2 bg-[#0f1629] px-4 text-3xl text-gray-50/80 sm:px-6 sm:text-7xl",
+            pointerDown && "sm:neonText text-slate-50/90"
+          )}
+          onPointerDown={() => {
+            setPointerDown(true);
+          }}
+          onPointerUp={() => {
+            setPointerDown(false);
+          }}
+          onClick={() => {
+            alert(`Purchased ${readCurrentName.state} tickets!`);
+          }}
+        >
+          Buy
         </div>
-        {/************************************/}
+        <div
+          className={classNames(
+            "select-none text-3xl text-gray-300/80 sm:px-6 sm:text-7xl"
+          )}
+        >
+          Tickets
+        </div>
       </div>
     </>
   );

@@ -10,16 +10,11 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #0f1629;
+  background: #0f1329;
+  /* background: #0f1629; */
   /* background: #1d2a32; */
   /* background: #072848; */
   overflow: hidden;
-  /* overflow-x: hidden; */
-}
-
-div {
-  /* color: dodgerblue; */
-  color: #020617;
 }
 
 @layer components {
@@ -33,7 +28,6 @@ div {
     text-shadow: 0 0 15px #fff, 0 0 20px #accfd6, 0 0 30px #7fb8c9,
       0 0 40px #2c83b3;
   }
-
   .neonTextWorldTour {
     color: #fff;
     text-shadow: 0 0 2px #fff, 0 0 6px #accfd6, 0 0 12px #7fb8c9,

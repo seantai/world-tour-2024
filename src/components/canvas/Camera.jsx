@@ -43,7 +43,7 @@ export default function Camera() {
         0,
         true
       );
-    }, 400);
+    }, 250);
     return () => clearTimeout(timeout);
   }, [readCurrentPosition.state]);
 

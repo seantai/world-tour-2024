@@ -29,26 +29,28 @@ export const LocationsHorizontal = () => {
 
   return (
     <>
-      <div
-        className="flex h-1/5 w-full snap-x items-center overflow-x-auto scroll-smooth whitespace-nowrap from-slate-500 px-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:h-1/5 sm:py-4 sm:scrollbar md:space-x-16"
-        ref={containerRef}
-      >
-        <div className="h-full pl-[25vw]" />
-        {readLocationsArray.arr &&
-          readLocationsArray.arr.map((location, i) => {
-            return (
-              <Location
-                key={i}
-                position={location.position}
-                reference={location.ref}
-                name={location.name}
-                readLocationsArray={readLocationsArray}
-              >
-                {location.name}
-              </Location>
-            );
-          })}
-        <div className="h-full pr-[25vw]" />
+      <div className="col-span-full row-span-4 cursor-grab sm:row-span-4">
+        <div
+          className="flex h-full w-full snap-x items-center overflow-x-auto scroll-smooth whitespace-nowrap border-0  px-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
+          ref={containerRef}
+        >
+          <div className="h-full pl-[25vw]" />
+          {readLocationsArray.arr &&
+            readLocationsArray.arr.map((location, i) => {
+              return (
+                <Location
+                  key={i}
+                  position={location.position}
+                  reference={location.ref}
+                  name={location.name}
+                  readLocationsArray={readLocationsArray}
+                >
+                  {location.name}
+                </Location>
+              );
+            })}
+          <div className="h-full pr-[25vw]" />
+        </div>
       </div>
     </>
   );
@@ -71,23 +73,11 @@ const Location = ({
 
   useEffect(() => {
     if (!isInView) return;
-    // currentPosition.state = position;
-    // currentName.state = name;
-    // console.log(name);
 
     const timeout = setTimeout(() => {
-      // if (marker.name == currentName.state) {
-      //   // alert(marker.name);
-      //   console.log(marker.name);
-      //   instanceRef.current.color = new Color(3, 3, 1);
-      // } else {
-      //   // console.log(marker.name);
-      //   instanceRef.current.color = new Color(0.2, 1.4, 1);
-      // }
       currentPosition.state = position;
       currentName.state = name;
-      console.log(name);
-    }, 400);
+    }, 250);
     return () => clearTimeout(timeout);
   }, [isInView]);
 

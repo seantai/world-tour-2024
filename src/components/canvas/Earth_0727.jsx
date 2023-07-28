@@ -11,7 +11,7 @@ import { Markers } from "./Markers";
 import { locationsArray, markersArray } from "../../data/state";
 
 export default function Earth(props) {
-  const { nodes } = useGLTF("/Earth_0719_3-transformed.glb", "/draco/");
+  const { nodes } = useGLTF("/Earth_0727.glb");
   const earthRef = useRef();
   const nodeArray = useMemo(() => Object.entries(nodes), [nodes]);
 
