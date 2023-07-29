@@ -24,6 +24,7 @@ const Scene = () => (
     <Stars count={2000} depth={10} radius={20} fade={true} />
     <Camera />
     {/* <Perf /> */}
+    {/* <StatsGl /> */}
     <EffectComposer disableNormalPass>
       <Bloom intensity={1} luminanceThreshold={1} />
       <Vignette offset={0.8} darkness={0.4} />
@@ -73,122 +74,8 @@ export default function App() {
         <Tickets />
         {/************************************/}
         <LocationsHorizontal />
-        {/* <HorizontalScroll /> */}
-        {/* <CountriesSlider /> */}
-        {/* <Carousel /> */}
         {/************************************/}
       </m.div>
     </>
   );
 }
-
-const countries = ["France", "Italy", "Spain", "Germany", "Sweden"];
-
-function Carousel() {
-  return (
-    <div className="col-span-full row-span-4 flex snap-x snap-mandatory overflow-x-scroll sm:row-span-4">
-      {countries.map((country) => (
-        <motion.div
-          key={country}
-          drag="x"
-          dragConstraints={{ right: 0, left: -300 }}
-          transition={{ duration: 0.5 }}
-          whileTap={{ cursor: "grabbing" }}
-        >
-          <div className="flex w-64 shrink-0 items-center justify-center bg-gray-300 text-lg">
-            {country}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-import { motion } from "framer-motion";
-
-function CountriesSlider() {
-  const countries = ["USA", "Canada", "Mexico", "Brazil", "Argentina"];
-
-  return (
-    <div className="relative">
-      <motion.div
-        className=" col-span-full row-span-4 flex space-x-2 sm:row-span-4"
-        initial={{ x: 0 }}
-        animate={{ x: -100 }}
-        transition={{ duration: 0.5 }}
-      >
-        {countries.map((country, i) => (
-          <div key={i} className="text-2xl font-bold">
-            {country}
-          </div>
-        ))}
-      </motion.div>
-
-      <button className="absolute left-2 top-1/2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="h-6 w-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-
-      <button className="absolute right-2 top-1/2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="h-6 w-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
-    </div>
-  );
-}
-
-// const HorizontalScroll = () => {
-//   const motionStyles = {
-//     display: "flex",
-//   };
-//   const countries = [
-//     "USA",
-//     "Canada",
-//     "Mexico",
-//     "France",
-//     "Germany",
-//     "China",
-//     "Australia",
-//   ];
-
-//   return (
-//     <m.div
-//       className="no-scrollbar col-span-full row-span-4 overflow-x-scroll sm:row-span-4"
-//       style={motionStyles}
-//       drag="x"
-//     >
-//       {countries.map((country, ind) => (
-//         <m.div
-//           key={ind}
-//           className="m-2 rounded-md border border-gray-300 bg-white p-4"
-//         >
-//           {country}
-//         </m.div>
-//       ))}
-//     </m.div>
-//   );
-// };

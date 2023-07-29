@@ -32,16 +32,8 @@ export default function Camera() {
         .normalize();
 
       const offset = new Vector3();
-      offset.copy(direction).multiplyScalar(4);
-      camRef.current.setLookAt(
-        offset.x + Math.random() * 1.1,
-        offset.y,
-        offset.z,
-        0,
-        0,
-        0,
-        true
-      );
+      offset.copy(direction).multiplyScalar(3);
+      camRef.current.setLookAt(offset.x, offset.y, offset.z, 0, 0, 0, true);
     }, 100);
     return () => clearTimeout(timeout);
   }, [readCurrentPosition.state]);

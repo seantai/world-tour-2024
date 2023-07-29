@@ -35,7 +35,7 @@ export default function Title() {
           }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2, type: "spring", delay: 0.5 }}
-          className="neonTextWorldTour text-3xl text-[#0f0a1c] sm:font-sans sm:text-6xl sm:font-bold"
+          className="neonTextWorldTour font-angkor text-3xl text-[#0f0a1c] sm:font-sans sm:text-6xl sm:font-bold"
         >
           Tour
         </m.div>
@@ -50,7 +50,7 @@ export default function Title() {
             "neonTextWorldTour font-angkor text-3xl text-[#12172c] sm:text-5xl sm:text-[60px]"
           )}
         >
-          2023
+          2024
         </m.div>
       </div>
     </>
