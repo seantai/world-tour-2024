@@ -5,11 +5,12 @@ import { MathUtils, Vector3 } from "three";
 import { currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
 
-import { locationsArray } from "../../data/state";
+import { locationsArray, spin } from "../../data/state";
 
 export default function Camera() {
   const camRef = useRef();
   const readCurrentPosition = useSnapshot(currentPosition);
+  const readSpin = useSnapshot(spin);
 
   useEffect(() => {
     if (camRef.current) {
@@ -39,44 +40,60 @@ export default function Camera() {
   }, [readCurrentPosition.state]);
 
   useEffect(() => {
-    if (camRef.current) {
-      camRef.current.addEventListener("controlend", () => {
-        const timeout = setTimeout(() => {
-          let distances = locationsArray.arr.map((location, index) => {
-            let distance = location.position.distanceTo(
-              camRef.current.camera.position
-            );
-            return { distance, index };
-          });
+    if (readSpin.state == "") return;
 
-          distances.sort((a, b) => a.distance - b.distance);
-          let closestPosition = locationsArray.arr[distances[0].index];
+    const randomLocation =
+      locationsArray.arr[Math.floor(Math.random() * locationsArray.arr.length)];
 
-          const offset = new Vector3();
-          offset.copy(closestPosition.position).multiplyScalar(4);
+    const direction = new Vector3();
+    direction
+      .subVectors(randomLocation.position, new Vector3(0, 0, 0))
+      .normalize();
 
-          locationsArray.arr.forEach((location) => {
-            if (location.name == closestPosition.name) {
-              location.ref.current?.scrollIntoView({
-                behavior: "smooth",
-                inline: "center",
-              });
-            }
-          });
-        }, 100);
-        return () => clearTimeout(timeout);
-      });
+    const offset = new Vector3();
+    offset.copy(direction).multiplyScalar(3);
+    camRef.current.setLookAt(offset.x, offset.y, offset.z, 0, 0, 0, true);
+  }, [spin.state]);
 
-      return () => camRef.current?.removeEventListener("controlend");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (camRef.current) {
+  //     camRef.current.addEventListener("controlend", () => {
+  //       const timeout = setTimeout(() => {
+  //         let distances = locationsArray.arr.map((location, index) => {
+  //           let distance = location.position.distanceTo(
+  //             camRef.current.camera.position
+  //           );
+  //           return { distance, index };
+  //         });
+
+  //         distances.sort((a, b) => a.distance - b.distance);
+  //         let closestPosition = locationsArray.arr[distances[0].index];
+
+  //         const offset = new Vector3();
+  //         offset.copy(closestPosition.position).multiplyScalar(4);
+
+  //         locationsArray.arr.forEach((location) => {
+  //           if (location.name == closestPosition.name) {
+  //             location.ref.current?.scrollIntoView({
+  //               behavior: "smooth",
+  //               inline: "center",
+  //             });
+  //           }
+  //         });
+  //       }, 100);
+  //       return () => clearTimeout(timeout);
+  //     });
+
+  //     return () => camRef.current?.removeEventListener("controlend");
+  //   }
+  // }, []);
 
   return (
     <CameraControls
       ref={camRef}
       makeDefault
       maxDistance={5}
-      minDistance={3}
+      minDistance={3.5}
       azimuthRotateSpeed={0.5}
       polarRotateSpeed={0.5}
     />

@@ -4,10 +4,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { locationsArray, currentName, currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
 import { motion as m } from "framer-motion";
+import TitleNew from "./TitleNew";
 
-export const LocationsHorizontal = () => {
+export const LocationsVerticalNew = () => {
   const readLocationsArray = useSnapshot(locationsArray);
-
   const containerRef = useRef();
 
   useEffect(() => {
@@ -20,7 +20,9 @@ export const LocationsHorizontal = () => {
             if (location.name == middleLocation) {
               location.ref.current?.scrollIntoView({
                 behavior: "smooth",
-                inline: "center",
+                block: "center",
+                // for horizontal scroll
+                // inline: "center",
               });
             }
           });
@@ -30,33 +32,34 @@ export const LocationsHorizontal = () => {
 
   return (
     <>
-      <div className="col-span-full row-span-4 sm:row-span-4">
-        <div
-          className="flex h-full w-full snap-x items-center overflow-x-scroll scroll-smooth whitespace-nowrap border-0 pr-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
-          ref={containerRef}
-        >
-          <div className="mx-200"></div>
-          <div className="neonText text-3xl text-slate-50/90">
-            {"← ← scroll"}
-          </div>
-
-          {readLocationsArray.arr &&
-            readLocationsArray.arr.map((location, i) => {
-              return (
-                <Location
-                  key={i}
-                  position={location.position}
-                  reference={location.ref}
-                  name={location.name}
-                  readLocationsArray={readLocationsArray}
-                >
-                  {location.name}
-                </Location>
-              );
-            })}
-          <div className="h-full pr-[25vw]" />
-        </div>
+      <div
+        className="col-start-10 col-end-13 row-start-1 row-end-17 flex  snap-proximity flex-col  overflow-y-scroll scroll-smooth whitespace-nowrap border-2 border-b-0 scrollbar scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 "
+        ref={containerRef}
+      >
+        {/********************************************/}
+        <TitleNew />
+        {/********************************************/}
+        <div className="h-[2rem]" />
+        {/********************************************/}
+        {readLocationsArray.arr &&
+          readLocationsArray.arr.map((location, i) => {
+            return (
+              <Location
+                key={i}
+                position={location.position}
+                reference={location.ref}
+                name={location.name}
+                readLocationsArray={readLocationsArray}
+              >
+                {location.name}
+              </Location>
+            );
+          })}
+        {/********************************************/}
+        <div className="h-[22rem]" />
+        {/********************************************/}
       </div>
+      {/********************************************/}
     </>
   );
 };
@@ -73,7 +76,7 @@ const Location = ({
   const [pointerDown, setPointerDown] = useState(false);
 
   const isInView = useInView(reference, {
-    margin: "-50% 0px -50% 0px ",
+    margin: "-50% 0px -50% 0px",
   });
 
   useEffect(() => {
@@ -100,17 +103,18 @@ const Location = ({
       {...props}
       ref={reference}
       className={classNames(
-        "flex h-full grow-0 cursor-pointer items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
+        " cursor-pointer py-3 pr-2 text-start font-sans text-5xl font-bold tracking-wide text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 ",
         hover && "text-slate-50/90",
         pointerDown && "sm:neonText",
-        isInView && "neonText text-slate-50/90 underline"
+        isInView && "neonText text-slate-50/90 underline",
+        ""
       )}
       onClick={() => {
         currentPosition.state = position;
         currentName.state = name;
         reference.current?.scrollIntoView({
           behavior: "smooth",
-          inline: "center",
+          block: "center",
         });
       }}
       onPointerEnter={() => {

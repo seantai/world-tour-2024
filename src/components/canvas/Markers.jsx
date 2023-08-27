@@ -14,14 +14,14 @@ export const Markers = ({ nodes, nodeArray }) => {
   //
   const groupRef = useRef();
   //
-  const uniforms = useMemo(
-    () => ({
-      u_hoverIntensity: {
-        value: 1,
-      },
-    }),
-    []
-  );
+  // const uniforms = useMemo(
+  //   () => ({
+  //     u_hoverIntensity: {
+  //       value: 1,
+  //     },
+  //   }),
+  //   []
+  // );
   //
 
   return (
@@ -30,9 +30,9 @@ export const Markers = ({ nodes, nodeArray }) => {
         <shaderMaterial
           vertexShader={markerVert}
           fragmentShader={markerFrag}
-          uniforms={uniforms}
+          // uniforms={uniforms}
         />
-
+        {/* <meshStandardMaterial toneMapped={false} /> */}
         <group ref={groupRef}>
           {nodeArray.map((marker, i) => {
             if (["Earth", "Scene"].includes(marker[1].name)) return;

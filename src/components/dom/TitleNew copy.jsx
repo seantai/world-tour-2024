@@ -1,18 +1,33 @@
 import { motion as m } from "framer-motion";
 import classNames from "classnames";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { launch } from "../../data/state";
 import { spin } from "../../data/state";
+import { useSnapshot } from "valtio";
 
-export default function Title() {
+export default function TitleNew(props) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+  // const readSpin = useSnapshot(spin);
   return (
     <>
-      <div
-        className="col-start-1 col-end-13 row-start-1 row-end-3
-        -mb-2 flex cursor-pointer items-center justify-center space-x-5 border-2 border-x-0 border-b-0 bg-grid-slate-700 sm:col-start-10 sm:col-end-13 sm:row-start-1 sm:row-end-8 sm:flex-col sm:space-x-0 sm:space-y-8 sm:border-x-2 "
+      <m.div
+        initial={{
+          y: isLargerThan768 && props.bottom ? 100 : 0,
+          opacity: isLargerThan768 ? 0 : 1,
+        }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 2, type: "spring" }}
+        className={classNames(
+          "col-start-1 col-end-13 row-start-1 row-end-3 flex cursor-pointer items-center justify-center border-b-2 py-10 sm:col-start-10 sm:col-end-13 sm:row-start-1 sm:row-end-8 sm:flex-col sm:space-y-10",
+          props.bottom && "mt-8 border-t-2"
+        )}
+        whileInView={{ opacity: 1, y: 0 }}
         onClick={(e) => {
+          // console.log(spin.state);
+          // console.log(readSpin.state);
+          // // console.log(e);
           spin.state = Math.random();
+          // console.log(spin.state);
+          // console.log(readSpin.state);
         }}
       >
         <m.div
@@ -23,7 +38,7 @@ export default function Title() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2, type: "spring" }}
           className={classNames(
-            "neonTextWorldTour font-angkor text-3xl text-[#12172c] sm:text-[2.5rem] lg:text-[60px]"
+            "neonTextWorldTour font-angkor text-3xl text-[#12172c] sm:text-5xl sm:text-[60px]"
           )}
         >
           World
@@ -52,7 +67,7 @@ export default function Title() {
         >
           2024
         </m.div>
-      </div>
+      </m.div>
     </>
   );
 }

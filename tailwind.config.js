@@ -39,6 +39,7 @@ export default {
         14: "14",
         15: "15",
         16: "16",
+        17: "17",
       },
       // gridRow: {
       //   "span-7": "span 7 / span 7",

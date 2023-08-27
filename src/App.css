@@ -10,7 +10,9 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #0f1329;
+  /* background: #00001a; */
+  background: #10121d;
+  /* background: #1c1f32; */
   /* background: #0f1629; */
   /* background: #1d2a32; */
   /* background: #072848; */
@@ -18,10 +20,13 @@ body,
 }
 
 @layer components {
+  .shadow1 {
+    text-shadow: 1px 5px 2px #000000;
+  }
   .neonText {
     color: #fff;
     text-shadow: 0 0 15px #2cb39d, 0 0 20px #2ca6b3, 0 0 30px #10647e,
-      0 0 40px #000101;
+      0 0 45px #000000;
   }
   .neonTextOnPointerDown {
     color: #fff;
@@ -43,5 +48,19 @@ body,
     border-width: 2px;
     border-color: 0 0 15px #2cb360, 0 0 20px #2c83b3, 0 0 30px #10647e,
       0 0 40px #000101;
+  }
+  .neonTextBlack {
+    color: #fff;
+    text-shadow: 0 0 15px #121c1a, 0 0 20px #2ca6b3, 0 0 30px #081f27,
+      0 0 40px #000101;
+  }
+  .neonBuy {
+    color: #ffffff;
+    text-shadow: 0 0 15px #81d8c9, 0 0 20px #5fb5be, 0 0 30px #61afc7,
+      0 0 40px #000101;
+  }
+  .neonTickets {
+    text-shadow: 1px 5px 2px #000000, 0 0 0px #81d8c9, 0 0 0px #5fb5be,
+      0 0 0px #61afc7;
   }
 }

@@ -5,9 +5,8 @@ import { locationsArray, currentName, currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
 import { motion as m } from "framer-motion";
 
-export const LocationsHorizontal = () => {
+export const LocationsVertical = () => {
   const readLocationsArray = useSnapshot(locationsArray);
-
   const containerRef = useRef();
 
   useEffect(() => {
@@ -30,33 +29,31 @@ export const LocationsHorizontal = () => {
 
   return (
     <>
-      <div className="col-span-full row-span-4 sm:row-span-4">
-        <div
-          className="flex h-full w-full snap-x items-center overflow-x-scroll scroll-smooth whitespace-nowrap border-0 pr-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
-          ref={containerRef}
-        >
-          <div className="mx-200"></div>
+      <div
+        className="{/*scroll-smooth */} col-start-10 col-end-13 row-start-1 row-end-17 flex snap-y flex-col items-center overflow-y-auto overflow-x-hidden whitespace-nowrap border-0 py-[50vh] bg-grid-slate-700"
+        ref={containerRef}
+      >
+        {/* <div className="mx-200"></div>
           <div className="neonText text-3xl text-slate-50/90">
             {"← ← scroll"}
-          </div>
-
-          {readLocationsArray.arr &&
-            readLocationsArray.arr.map((location, i) => {
-              return (
-                <Location
-                  key={i}
-                  position={location.position}
-                  reference={location.ref}
-                  name={location.name}
-                  readLocationsArray={readLocationsArray}
-                >
-                  {location.name}
-                </Location>
-              );
-            })}
-          <div className="h-full pr-[25vw]" />
-        </div>
+          </div> */}
+        {readLocationsArray.arr &&
+          readLocationsArray.arr.map((location, i) => {
+            return (
+              <Location
+                key={i}
+                position={location.position}
+                reference={location.ref}
+                name={location.name}
+                readLocationsArray={readLocationsArray}
+              >
+                {location.name}
+              </Location>
+            );
+          })}
+        {/* <div className="h-full pr-[25vw]" /> */}
       </div>
+      {/* </div> */}
     </>
   );
 };
@@ -73,7 +70,7 @@ const Location = ({
   const [pointerDown, setPointerDown] = useState(false);
 
   const isInView = useInView(reference, {
-    margin: "-50% 0px -50% 0px ",
+    margin: "-50% 0px -50% 0px",
   });
 
   useEffect(() => {
@@ -100,7 +97,7 @@ const Location = ({
       {...props}
       ref={reference}
       className={classNames(
-        "flex h-full grow-0 cursor-pointer items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
+        "{/*grow-0*/} cursor-pointer items-center p-6 font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
         hover && "text-slate-50/90",
         pointerDown && "sm:neonText",
         isInView && "neonText text-slate-50/90 underline"

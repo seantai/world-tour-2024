@@ -34,3 +34,11 @@ export const markerHovered = proxy({
 export const launch = proxy({
   state: "",
 });
+
+export const spin = proxy({
+  state: "",
+});
+
+export const scrolling = proxy({
+  state: "",
+});

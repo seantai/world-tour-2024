@@ -15,7 +15,7 @@ export default function Tickets() {
   return (
     <>
       <div
-        className="col-start-1 col-end-13 row-start-12 row-end-14 flex  select-none items-center justify-center space-x-0 border-2 border-t-0 sm:col-span-3 sm:col-start-10 sm:col-end-13 sm:row-start-8 sm:row-end-14 sm:flex-col sm:space-x-0 sm:space-y-3 sm:border-l-0"
+        className="col-start-1 col-end-13 row-start-12 row-end-14 flex  select-none items-center justify-center space-x-0 border-2 border-t-0 sm:col-span-3 sm:col-start-10 sm:col-end-13 sm:row-start-8 sm:row-end-14 sm:flex-col sm:space-x-0 sm:space-y-3 sm:border-l-2"
         onClick={() => {
           alert(`Purchased ${readCurrentName.state} tickets!`);
         }}
@@ -34,7 +34,7 @@ export default function Tickets() {
         >
           BUY
         </div>
-        {isLargerThan768 ? (
+        {/* {isLargerThan768 ? (
           <TicketSVG className="h-full w-[44%] sm:h-[44%]" />
         ) : (
           <div
@@ -44,7 +44,14 @@ export default function Tickets() {
           >
             Tickets
           </div>
-        )}
+        )} */}
+        <div
+          className={classNames(
+            "neonTicketBorder select-none rounded-br-lg rounded-tr-lg bg-slate-700 px-4 text-4xl text-gray-300/80 "
+          )}
+        >
+          Tickets
+        </div>
       </div>
     </>
   );
