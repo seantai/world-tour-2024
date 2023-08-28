@@ -19,7 +19,7 @@ export default function Tickets() {
           onClick={() => {
             toast({
               title: `${readCurrentName.state}`,
-              description: "Friday, Sept 8, 2024 at 6 PM",
+              description: "Friday, Nov 24, 2024",
               duration: 4000,
             });
           }}
