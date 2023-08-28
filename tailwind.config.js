@@ -3,17 +3,15 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 const svgToDataUri = require("mini-svg-data-uri");
-const iOSHeight = require("@rvxlab/tailwind-plugin-ios-full-height");
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,svg}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,svg}"],
   theme: {
     extend: {
       fontFamily: {
         sans: ["amarante", "sans-serif"],
         angkor: ["angkor", "sans-serif"],
       },
-
       gridTemplateRows: {
         16: "repeat(16, minmax(0, 1fr))",
       },
@@ -41,33 +39,63 @@ export default {
         16: "16",
         17: "17",
       },
-      // gridRow: {
-      //   "span-7": "span 7 / span 7",
-      //   "span-8": "span 8 / span 8",
-      //   "span-9": "span 9 / span 9",
-      //   "span-10": "span 10 / span 10",
-      //   "span-11": "span 11 / span 11",
-      //   "span-12": "span 12 / span 12",
-      //   "span-13": "span 13 / span 13",
-      //   "span-14": "span 14 / span 14",
-      //   "span-15": "span 15 / span 15",
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: "calc(var(--radius) - 4px)",
+      },
+      // fontFamily: {
+      //   sans: ["var(--font-sans)", ...fontFamily.sans],
       // },
-      // backgroundImage: (theme) => ({
-      //   "gradient-radial":
-      //     "radial-gradient(circle,  rgba(42,88,114,1) 30%, rgba(29,42,50,1) 70%)",
-      //   "gradient-linear": (theme) => `linear-gradient(
-      //     90deg,
-      //     rgba(29,42,50,0) 0% ,
-      //     rgba(42,88,114,1) 100%)`,
-      // }),
-      // animation: {
-      //   shine: "shine .75s",
-      // },
-      // keyframes: {
-      //   shine: {
-      //     "100%": { left: "125%" },
-      //   },
-      // },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
   plugins: [
@@ -85,6 +113,6 @@ export default {
         { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
       );
     },
-    iOSHeight,
+    require("tailwindcss-animate")
   ],
 };

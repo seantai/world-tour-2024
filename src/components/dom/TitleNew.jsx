@@ -7,7 +7,7 @@ export default function TitleNew() {
     <>
       <m.div
         className={classNames(
-          "border-b-1 z-[70] col-end-13 row-start-1 row-end-6 flex cursor-pointer flex-col items-center justify-evenly overflow-hidden border-2 border-b-slate-50/20 bg-gradient-to-r from-transparent from-45% to-[#2c7db350] max-md:border-b-2 sm:col-start-10  md:text-4xl lg:text-4xl xl:text-5xl"
+          "border-b-1 z-[70] col-end-13 row-start-1 row-end-6 flex cursor-pointer flex-col items-center justify-evenly overflow-hidden border-2 border-b-slate-50/20 bg-gradient-to-r from-transparent from-45% to-[#2c7db350] max-md:border-b-2 sm:col-start-10  md:text-4xl lg:text-5xl xl:text-6xl"
         )}
         onClick={(e) => {
           spin.state = Math.random();

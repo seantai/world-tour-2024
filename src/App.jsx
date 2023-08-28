@@ -1,12 +1,11 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { Bvh, Stars, StatsGl } from "@react-three/drei";
+import { Bvh, Stars } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 
 import Camera from "./components/canvas/Camera";
 import Earth from "./components/canvas/Earth_0727";
 
-import { LocationsHorizontal } from "./components/dom/LocationsHorizontal";
 import { LocationsHorizontalNew } from "./components/dom/LocationsHorizontalNew";
 import { LocationsVerticalNew } from "./components/dom/LocationsVerticalNew";
 import Title from "./components/dom/Title";
@@ -15,13 +14,9 @@ import Tickets from "./components/dom/Tickets";
 import TicketsNew from "./components/dom/TicketsNew";
 
 import classNames from "classnames";
-import { useSnapshot } from "valtio";
-
-import { markerHovered } from "./data/state";
-import { Perf } from "r3f-perf";
 import { motion as m } from "framer-motion";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { Toaster } from "./components/toaster";
 
 const Scene = () => (
   <>
@@ -29,6 +24,7 @@ const Scene = () => (
     <ambientLight intensity={0.2} />
     <Stars count={2000} depth={10} radius={20} fade={true} />
     <Camera />
+
     {/* <Perf /> */}
     {/* <StatsGl /> */}
     <EffectComposer disableNormalPass>
@@ -40,11 +36,9 @@ const Scene = () => (
 
 export default function App() {
   //
-  const readMarkerHovered = useSnapshot(markerHovered);
   const [isLargerThan1200] = useMediaQuery("(min-width: 1000px)");
 
   return (
-    // <ReactLenis root>
     <m.div
       initial={{
         opacity: 0,
@@ -57,7 +51,6 @@ export default function App() {
       <div
         className={classNames(
           "col-start-1 col-end-13 row-start-3 row-end-12 cursor-grab border-2 border-t-2 sm:col-start-1 sm:col-end-10 sm:row-start-1 sm:row-end-14 md:border-r-0"
-          // readMarkerHovered.state && "cursor-pointer"
         )}
       >
         <Canvas
@@ -72,7 +65,6 @@ export default function App() {
           <Bvh>
             <Scene />
           </Bvh>
-          {/* <color attach="background" args={["#00001a"]} /> */}
         </Canvas>
       </div>
       {/************************************/}
@@ -82,28 +74,21 @@ export default function App() {
           {/************************************/}
           <Tickets />
           {/************************************/}
-          {/* <div className=""> */}
           <LocationsHorizontalNew />
-          {/* </div> */}
         </>
       )}
 
       {/************************************/}
       {isLargerThan1200 && (
         <>
-          {/* <ReactLenis> */}
           <TitleNew />
-
           <LocationsVerticalNew top={true} />
           <TicketsNew />
-
-          {/* </ReactLenis> */}
         </>
       )}
       {/************************************/}
-
+      <Toaster />
       {/************************************/}
     </m.div>
-    // </ReactLenis>
   );
 }
