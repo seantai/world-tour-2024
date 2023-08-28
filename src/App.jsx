@@ -2,29 +2,26 @@ import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { Bvh, Stars } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
-
-import Camera from "./components/canvas/Camera";
-import Earth from "./components/canvas/Earth_0727";
-
-import { LocationsHorizontalNew } from "./components/dom/LocationsHorizontalNew";
-import { LocationsVerticalNew } from "./components/dom/LocationsVerticalNew";
-import Title from "./components/dom/Title";
-import TitleNew from "./components/dom/TitleNew";
-import Tickets from "./components/dom/Tickets";
-import TicketsNew from "./components/dom/TicketsNew";
-
 import classNames from "classnames";
 import { motion as m } from "framer-motion";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { Toaster } from "./components/toaster";
+import { Toaster } from "./components/dom/Toaster";
+
+import Camera from "./components/canvas/Camera";
+import Earth from "./components/canvas/Earth";
+
+import { LocationsHorizontal } from "./components/dom/LocationsHorizontal";
+import { LocationsVertical } from "./components/dom/LocationsVertical";
+import Title from "./components/dom/Title";
+import TitleLarge from "./components/dom/TitleLarge";
+import Tickets from "./components/dom/Tickets";
+import TicketsLarge from "./components/dom/TicketsLarge";
 
 const Scene = () => (
   <>
     <Earth />
-    <ambientLight intensity={0.2} />
     <Stars count={2000} depth={10} radius={20} fade={true} />
     <Camera />
-
     {/* <Perf /> */}
     {/* <StatsGl /> */}
     <EffectComposer disableNormalPass>
@@ -36,7 +33,7 @@ const Scene = () => (
 
 export default function App() {
   //
-  const [isLargerThan1200] = useMediaQuery("(min-width: 1000px)");
+  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
 
   return (
     <m.div
@@ -68,22 +65,19 @@ export default function App() {
         </Canvas>
       </div>
       {/************************************/}
-      {!isLargerThan1200 && (
+      {!isLargerThan1024 && (
         <>
           <Title />
-          {/************************************/}
           <Tickets />
-          {/************************************/}
-          <LocationsHorizontalNew />
+          <LocationsHorizontal />
         </>
       )}
-
       {/************************************/}
-      {isLargerThan1200 && (
+      {isLargerThan1024 && (
         <>
-          <TitleNew />
-          <LocationsVerticalNew top={true} />
-          <TicketsNew />
+          <TitleLarge />
+          <LocationsVertical />
+          <TicketsLarge />
         </>
       )}
       {/************************************/}

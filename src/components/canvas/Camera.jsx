@@ -55,39 +55,6 @@ export default function Camera() {
     camRef.current.setLookAt(offset.x, offset.y, offset.z, 0, 0, 0, true);
   }, [spin.state]);
 
-  // useEffect(() => {
-  //   if (camRef.current) {
-  //     camRef.current.addEventListener("controlend", () => {
-  //       const timeout = setTimeout(() => {
-  //         let distances = locationsArray.arr.map((location, index) => {
-  //           let distance = location.position.distanceTo(
-  //             camRef.current.camera.position
-  //           );
-  //           return { distance, index };
-  //         });
-
-  //         distances.sort((a, b) => a.distance - b.distance);
-  //         let closestPosition = locationsArray.arr[distances[0].index];
-
-  //         const offset = new Vector3();
-  //         offset.copy(closestPosition.position).multiplyScalar(4);
-
-  //         locationsArray.arr.forEach((location) => {
-  //           if (location.name == closestPosition.name) {
-  //             location.ref.current?.scrollIntoView({
-  //               behavior: "smooth",
-  //               inline: "center",
-  //             });
-  //           }
-  //         });
-  //       }, 100);
-  //       return () => clearTimeout(timeout);
-  //     });
-
-  //     return () => camRef.current?.removeEventListener("controlend");
-  //   }
-  // }, []);
-
   return (
     <CameraControls
       ref={camRef}

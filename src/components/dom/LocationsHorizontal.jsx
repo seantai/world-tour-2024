@@ -6,10 +6,11 @@ import { useSnapshot } from "valtio";
 import { motion as m } from "framer-motion";
 
 export const LocationsHorizontal = () => {
+  //
   const readLocationsArray = useSnapshot(locationsArray);
-
   const containerRef = useRef();
 
+  //
   useEffect(() => {
     const middleLocation = "Korea";
 
@@ -35,9 +36,8 @@ export const LocationsHorizontal = () => {
           className="flex h-full w-full snap-x items-center overflow-x-scroll scroll-smooth whitespace-nowrap border-0 pr-44 scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 sm:space-x-16 sm:py-4 sm:scrollbar"
           ref={containerRef}
         >
-          <div className="mx-200"></div>
-          <div className="neonText text-3xl text-slate-50/90">
-            {"← ← scroll"}
+          <div className="neonText text-5xl text-slate-50/90">
+            {"← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ← ←"}
           </div>
 
           {readLocationsArray.arr &&
@@ -73,7 +73,7 @@ const Location = ({
   const [pointerDown, setPointerDown] = useState(false);
 
   const isInView = useInView(reference, {
-    margin: "-50% 0px -50% 0px ",
+    margin: "0px -50% 0px -50% ",
   });
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const Location = ({
       {...props}
       ref={reference}
       className={classNames(
-        "flex h-full grow-0 cursor-pointer items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
+        "shadow2 flex h-full grow-0 cursor-pointer snap-center items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
         hover && "text-slate-50/90",
         pointerDown && "sm:neonText",
         isInView && "neonText text-slate-50/90 underline"

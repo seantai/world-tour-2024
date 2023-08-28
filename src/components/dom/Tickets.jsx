@@ -2,10 +2,9 @@ import classNames from "classnames";
 import { useState } from "react";
 import { currentName } from "../../data/state";
 import { useSnapshot } from "valtio";
-import TicketSVG from "./TicketSVG";
 import { motion as m } from "framer-motion";
 
-import { useToast } from "@/components/use-toast";
+import { useToast } from "./use-toast";
 
 export default function Tickets() {
   const [pointerEnter, setPointerEnter] = useState();
@@ -41,7 +40,7 @@ export default function Tickets() {
             BUY
           </div>
           <m.div
-            initial={{ textShadow: " 1px 0px 2px #000000" }}
+            initial={{ textShadow: "1px 0px 2px #000000" }}
             whileHover={{
               color: "#ddffee",
               textShadow:

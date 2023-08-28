@@ -7,10 +7,9 @@ import { Apple } from "../svg/Apple";
 import { Spotify } from "../svg/Spotify";
 import { Youtube } from "../svg/Youtube";
 import { Github } from "../svg/Github";
-import { spin } from "../../data/state";
-import { useToast } from "@/components/use-toast";
+import { useToast } from "./use-toast";
 
-export default function TicketsNew() {
+export default function TicketsLarge() {
   //
   const [pointerDown, setPointerDown] = useState();
 
@@ -33,7 +32,7 @@ export default function TicketsNew() {
         }}
       >
         <div
-          className="group flex cursor-pointer items-center justify-center"
+          className="flex cursor-pointer items-center justify-center"
           variant="outline"
           onClick={() => {
             toast({

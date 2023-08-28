@@ -4,14 +4,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { locationsArray, currentName, currentPosition } from "../../data/state";
 import { useSnapshot } from "valtio";
 import { motion as m } from "framer-motion";
-import TitleNew from "./TitleNew";
 
-export const LocationsVerticalNew = () => {
+export const LocationsVertical = () => {
   const readLocationsArray = useSnapshot(locationsArray);
   const containerRef = useRef();
 
   useEffect(() => {
-    const middleLocation = "Korea";
+    const middleLocation = "Mongolia";
 
     if (containerRef.current) {
       {
@@ -31,16 +30,11 @@ export const LocationsVerticalNew = () => {
   }, [readLocationsArray]);
 
   return (
-    <>
-      <div
-        className="col-start-10 col-end-13 row-start-1 row-end-17 flex  snap-proximity flex-col  overflow-y-scroll scroll-smooth whitespace-nowrap border-2 border-b-0 scrollbar scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700 "
-        ref={containerRef}
-      >
-        {/********************************************/}
-        <TitleNew />
-        {/********************************************/}
-        <div className="h-[2rem]" />
-        {/********************************************/}
+    <div
+      className="z-50 col-start-10 col-end-13 row-start-6 row-end-17 flex h-full flex-col overflow-y-auto overflow-x-hidden scroll-smooth whitespace-nowrap border-2 border-r-0 border-t-0 scrollbar scrollbar-track-slate-500 scrollbar-thumb-slate-800 bg-grid-slate-700"
+      ref={containerRef}
+    >
+      <div className="snap-y snap-mandatory bg-gradient-to-r from-transparent from-40% to-[#2c7db350]">
         {readLocationsArray.arr &&
           readLocationsArray.arr.map((location, i) => {
             return (
@@ -50,17 +44,15 @@ export const LocationsVerticalNew = () => {
                 reference={location.ref}
                 name={location.name}
                 readLocationsArray={readLocationsArray}
+                index={i}
+                containerRef={containerRef}
               >
                 {location.name}
               </Location>
             );
           })}
-        {/********************************************/}
-        <div className="h-[22rem]" />
-        {/********************************************/}
       </div>
-      {/********************************************/}
-    </>
+    </div>
   );
 };
 
@@ -70,13 +62,16 @@ const Location = ({
   name,
   position,
   readLocationsArray,
+  index,
+  containerRef,
   ...props
 }) => {
   const [hover, setHover] = useState(false);
   const [pointerDown, setPointerDown] = useState(false);
 
   const isInView = useInView(reference, {
-    margin: "-50% 0px -50% 0px",
+    root: containerRef,
+    margin: "-45% 0px -55% 0px",
   });
 
   useEffect(() => {
@@ -90,24 +85,16 @@ const Location = ({
     return () => clearTimeout(timeout);
   }, [isInView]);
 
-  const listItem = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1 },
-  };
-
   return (
     <m.div
-      variants={listItem}
-      initial="hidden"
-      animate="show"
+      layout
       {...props}
       ref={reference}
       className={classNames(
-        " cursor-pointer py-3 pr-2 text-start font-sans text-5xl font-bold tracking-wide text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 ",
-        hover && "text-slate-50/90",
+        "shadow2 cursor-pointer snap-center px-4 py-[2vh] text-start font-sans text-4xl font-bold tracking-wider text-slate-400 decoration-1 underline-offset-4 first:pt-[30vh] first:before:block first:before:pb-16 first:before:content-['▼▲▼'] last:pb-[35vh] last:after:block last:after:pt-16 last:after:content-['▲▼▲'] lg:text-[2.rem] xl:text-5xl",
         pointerDown && "sm:neonText",
-        isInView && "neonText text-slate-50/90 underline",
-        ""
+        isInView && "neonText text-slate-50 underline",
+        hover && "text-slate-200/80"
       )}
       onClick={() => {
         currentPosition.state = position;

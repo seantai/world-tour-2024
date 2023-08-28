@@ -10,12 +10,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  /* background: #00001a; */
   background: #10121d;
-  /* background: #1c1f32; */
-  /* background: #0f1629; */
-  /* background: #1d2a32; */
-  /* background: #072848; */
   overflow: hidden;
 }
 
@@ -115,7 +110,6 @@ body,
       0 0 40px #000101;
   }
   .neonTicketBorder {
-    /* border-radius: 45%; */
     border-width: 2px;
     border-color: 1px 1px 2px #fff, 0 0 15px #2cb360, 0 0 20px #2c83b3,
       0 0 30px #10647e, 0 0 40px #000101;
@@ -140,13 +134,3 @@ body,
       0 0 0px #61afc7;
   }
 }
-
-/* @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-} */

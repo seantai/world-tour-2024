@@ -7,8 +7,7 @@ import { SRGBColorSpace } from "three";
 import earthVert from "../../glsl/earth.vert";
 import earthFrag from "../../glsl/earth.frag";
 import { Markers } from "./Markers";
-
-import { locationsArray, markersArray } from "../../data/state";
+import { locationsArray } from "../../data/state";
 
 export default function Earth(props) {
   const { nodes } = useGLTF("/Earth_0820.glb");
@@ -17,9 +16,7 @@ export default function Earth(props) {
 
   useEffect(() => {
     if (nodes) {
-      // console.log("nodes");
       const dummyArray = [];
-      // const dummyArray1 = [];
       const nodeArray = Object.entries(nodes);
       nodeArray.map((marker) => {
         if (["Earth", "Scene"].includes(marker[1].name)) return;
@@ -28,15 +25,8 @@ export default function Earth(props) {
           position: marker[1].position,
           ref: ref(createRef()),
         });
-        // dummyArray1.push({
-        //   name: marker[1].name,
-        //   position: marker[1].position,
-        //   rotation: marker[1].rotation,
-        //   ref: ref(createRef()),
-        // });
       });
       locationsArray.arr = dummyArray;
-      // markersArray.arr = dummyArray1;
     }
   }, [nodes]);
 
@@ -44,7 +34,7 @@ export default function Earth(props) {
     t.flipY = false;
     t.colorSpace = SRGBColorSpace;
   });
-  const neon = useTexture("./img/earth_neon_dark.webp", (t) => {
+  const neon = useTexture("./img/earth_neon.webp", (t) => {
     t.flipY = false;
     t.colorSpace = SRGBColorSpace;
   });
@@ -86,7 +76,6 @@ export default function Earth(props) {
               uniforms={uniforms}
             />
           </mesh>
-
           <Markers nodes={nodes} nodeArray={nodeArray} />
         </group>
       </Float>
