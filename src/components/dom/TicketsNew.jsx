@@ -6,25 +6,15 @@ import { motion as m } from "framer-motion";
 import { Apple } from "../svg/Apple";
 import { Spotify } from "../svg/Spotify";
 import { Youtube } from "../svg/Youtube";
+import { Github } from "../svg/Github";
 import { spin } from "../../data/state";
 import { useToast } from "@/components/use-toast";
 
 export default function TicketsNew() {
+  //
   const [pointerDown, setPointerDown] = useState();
+
   const readCurrentName = useSnapshot(currentName);
-
-  const handlePointerUp = () => {
-    setPointerDown(false);
-  };
-
-  useEffect(() => {
-    if (pointerDown) {
-      window.addEventListener("pointerup", handlePointerUp);
-    }
-    return () => {
-      window.removeEventListener("pointerup", handlePointerUp);
-    };
-  }, [pointerDown]);
 
   const { toast } = useToast();
 
@@ -32,7 +22,8 @@ export default function TicketsNew() {
     <>
       <div
         className={classNames(
-          "col-start-1 col-end-10 row-start-14 row-end-17 flex  items-center justify-between space-x-0 border-2 border-t-0 px-10 sm:space-x-16 sm:border-r-0"
+          "col-start-1 col-end-10 row-start-14 row-end-17 flex  items-center justify-between space-x-0 border-2 border-t-0 px-10 sm:space-x-16 sm:border-r-0",
+          "bg-gradient-to-l from-transparent from-40% to-[#2c7db350]"
         )}
         onPointerDown={() => {
           setPointerDown(true);
@@ -45,11 +36,10 @@ export default function TicketsNew() {
           className="group flex cursor-pointer items-center justify-center"
           variant="outline"
           onClick={() => {
-            // spin.state = Math.random();
             toast({
-              title: `Purchased ${readCurrentName.state} tickets!`,
-              description: "Friday, February 10, 2023 at 5:57 PM",
-              duration: 2000,
+              title: `${readCurrentName.state}`,
+              description: "Friday, Sept 8, 2024 at 6 PM",
+              duration: 4000,
             });
           }}
         >
@@ -71,9 +61,6 @@ export default function TicketsNew() {
             className={classNames(
               "neonTicketBorder cursor-pointer rounded-br-lg rounded-tr-lg border-l-0 bg-slate-700/70 px-4 py-2 font-sans text-4xl tracking-wide text-[#749492]"
             )}
-            // onClick={() => {
-            //   alert(`Purchased ${readCurrentName.state} tickets!`);
-            // }}
           >
             <m.div
               initial={{ textShadow: " 1px 0px 2px #000000" }}
@@ -89,7 +76,8 @@ export default function TicketsNew() {
             </m.div>
           </m.div>
         </div>
-        <div className="flex cursor-pointer items-center justify-center space-x-10">
+        <div className="justify-space flex cursor-pointer items-center space-x-4 ">
+          <Github fill={"#26727a"} />
           <Apple fill={"#26727a"} />
           <Spotify fill={"#26727a"} />
           <Youtube fill={"#26727a"} />

@@ -19,7 +19,6 @@ body,
   overflow: hidden;
 }
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -92,6 +91,9 @@ body,
   .shadow1 {
     text-shadow: 1px 5px 2px #000000;
   }
+  .shadow2 {
+    text-shadow: 0px 3px 2px #324e50;
+  }
   .neonText {
     color: #fff;
     text-shadow: 0 0 15px #2cb39d, 0 0 20px #2ca6b3, 0 0 30px #10647e,
@@ -138,7 +140,6 @@ body,
       0 0 0px #61afc7;
   }
 }
-
 
 /* @layer base {
   * {

@@ -5,9 +5,9 @@ export const Apple = (props) => {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 39.94 48"
+      viewBox="0 0 52 52"
       role="img"
-      className="h-12"
+      className="h-12 transition-transform duration-200 hover:scale-95"
       fill={props.fill}
     >
       <path

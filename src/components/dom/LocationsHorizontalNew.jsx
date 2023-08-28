@@ -278,7 +278,7 @@ const Location = ({
       {...props}
       ref={reference}
       className={classNames(
-        "flex h-full grow-0 cursor-pointer snap-center items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
+        "shadow2 flex h-full grow-0 cursor-pointer snap-center items-center border-y-2 border-t-0 border-slate-50 border-opacity-0 p-2 text-center font-sans text-5xl font-light text-gray-50/80 text-slate-400 decoration-2 underline-offset-8 sm:text-7xl",
         hover && "text-slate-50/90",
         pointerDown && "sm:neonText",
         isInView && "neonText text-slate-50/90 underline"

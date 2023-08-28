@@ -6,7 +6,7 @@ export const Youtube = (props) => {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 48 34.34"
-      className="h-10"
+      className="h-10  transition-transform duration-200 hover:scale-95"
       fill={props.fill}
       role="img"
     >

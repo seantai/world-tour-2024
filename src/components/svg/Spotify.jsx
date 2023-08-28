@@ -4,8 +4,8 @@ export const Spotify = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 48"
-      className="h-12"
+      viewBox="0 0 52 52"
+      className="h-12  transition-transform duration-200 hover:scale-95"
       fill={props.fill}
       role="img"
     >
