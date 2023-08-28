@@ -5,7 +5,7 @@ import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import classNames from "classnames";
 import { motion as m } from "framer-motion";
 import { useMediaQuery } from "@chakra-ui/media-query";
-import { Toaster } from "./components/dom/Toaster";
+import { Toaster } from "./components/dom/toaster";
 
 import Camera from "./components/canvas/Camera";
 import Earth from "./components/canvas/Earth";
